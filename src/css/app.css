@@ -583,6 +583,10 @@ video {
   margin-top: auto;
 }
 
+.inline {
+  display: inline;
+}
+
 .flex {
   display: flex;
 }
@@ -591,24 +595,16 @@ video {
   height: 170px;
 }
 
+.h-\[30px\] {
+  height: 30px;
+}
+
 .h-\[50px\] {
   height: 50px;
 }
 
-.h-\[20px\] {
-  height: 20px;
-}
-
 .h-full {
   height: 100%;
-}
-
-.h-\[5000px\] {
-  height: 5000px;
-}
-
-.h-\[30px\] {
-  height: 30px;
 }
 
 .w-\[250px\] {

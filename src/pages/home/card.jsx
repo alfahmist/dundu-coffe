@@ -1,5 +1,13 @@
 const card = ({ product }) => {
 	console.log(product);
+	const rupiah = (number) => {
+		const options = {
+			style: 'currency',
+			currency: 'IDR',
+		};
+		return new Intl.NumberFormat('id-ID', options).format(number);
+	};
+
 	return (
 		<>
 			<div className='flex flex-col border-2 w-[250px] flex-wrap rounded-2xl overflow-hidden mb-4'>
@@ -14,7 +22,7 @@ const card = ({ product }) => {
 						</p>
 					</div>
 					<div className='flex flex-row justify-between items-center'>
-						<p className='font-normal text-sm'>Rp{product.price}</p>
+						<p className='font-normal text-sm'>{rupiah(product.price)}</p>
 						{product.stock !== 0 ? (
 							<p className='font-medium text-xs '>Stock Tersedia</p>
 						) : (

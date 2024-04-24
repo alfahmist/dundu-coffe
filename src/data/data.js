@@ -37,7 +37,7 @@ export const products = [
 	{
 		id: 6,
 		name: 'tomyam mini',
-		price: '45000',
+		price: '42000',
 		stock: 0,
 		image: 'tomyam-mini.jpg',
 	},

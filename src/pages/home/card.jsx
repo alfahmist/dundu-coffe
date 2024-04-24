@@ -1,5 +1,7 @@
+import useMarketStore from '../../store/marketStore';
+
 const card = ({ product }) => {
-	console.log(product);
+	const { addToCart, setNotification, notification } = useMarketStore();
 	const rupiah = (number) => {
 		const options = {
 			style: 'currency',
@@ -31,7 +33,12 @@ const card = ({ product }) => {
 					</div>
 
 					{product.stock !== 0 ? (
-						<button className='mt-auto text-xs font-medium border border-red-400 px-4 py-2 rounded-[15px] self-end hover:bg-red-400 hover:text-white active:bg-red-500'>
+						<button
+							className='mt-auto text-xs font-medium border border-red-400 px-4 py-2 rounded-[15px] self-end hover:bg-red-400 hover:text-white active:bg-red-500'
+							onClick={() => {
+								notification ? null : addToCart(product);
+							}}
+						>
 							+Keranjang
 						</button>
 					) : (

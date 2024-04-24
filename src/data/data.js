@@ -3,7 +3,7 @@ export const products = [
 		id: 1,
 		name: 'affogato',
 		price: 25000,
-		stock: '2',
+		stock: 2,
 		image: 'affogato.jpg',
 	},
 	{

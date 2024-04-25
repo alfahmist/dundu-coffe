@@ -3,6 +3,7 @@ import Home from '../pages/home';
 import Cart from '../pages/cart';
 import Layout from '../layout';
 import OrderHistory from '../pages/history';
+import Checkout from '../pages/checkout';
 
 const index = () => {
 	const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const index = () => {
 				{
 					path: '/order-history',
 					element: <OrderHistory />,
+				},
+				{
+					path: '/checkout',
+					element: <Checkout />,
 				},
 			],
 		},

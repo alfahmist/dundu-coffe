@@ -33,6 +33,32 @@ const useMarketStore = create((set, get) => ({
 			isSelected: true,
 		},
 	],
+	checkout: [
+		{
+			id: 11,
+			quantity: 1,
+			stock: 1,
+			name: 'name 1',
+			image: 'affogato.jpg',
+			price: 41000,
+		},
+		{
+			id: 13,
+			quantity: 2,
+			stock: 1,
+			name: 'name 2',
+			image: 'affogato.jpg',
+			price: 2000,
+		},
+		{
+			id: 15,
+			quantity: 3,
+			stock: 1,
+			name: 'name 3',
+			image: 'affogato.jpg',
+			price: 32000,
+		},
+	],
 	notification: false,
 	notificationText: '',
 	isSelectAll: false,
@@ -50,6 +76,18 @@ const useMarketStore = create((set, get) => ({
 	},
 	increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
 	removeAllBears: () => set({ bears: 0 }),
+	checkoutCart: () => {
+		console.log(get().checkout);
+
+		set({
+			checkout: get().carts,
+		});
+		setTimeout(() => {
+			set({
+				carts: [],
+			});
+		}, 1000);
+	},
 	addToCart: (obj) => {
 		get().Notification('1 item added to cart');
 		setTimeout(() => {
@@ -140,6 +178,12 @@ const useMarketStore = create((set, get) => ({
 		get()
 			.carts.filter((x) => x.isSelected === true)
 			.reduce((acc, current) => (acc += current.quantity * current.price), 0),
+	getCheckoutPrice: () =>
+		get().checkout.reduce(
+			(acc, current) => (acc += current.quantity * current.price),
+			0
+		),
+	getCheckoutTotalItem: () => get().checkout.length,
 }));
 
 export default useMarketStore;

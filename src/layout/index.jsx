@@ -10,7 +10,7 @@ const index = () => {
 		<>
 			<div
 				className={`fixed w-full h-[30px] cursor-default transition-all duration-500  ${
-					notification ? 'top-[100px] opacity-100' : 'top-[0] opacity-0'
+					notification ? 'top-[100px] opacity-100' : 'top-[-100px] opacity-0'
 				}`}
 			>
 				<div className='text-center w-[430px] bg-black opacity-80 mx-auto rounded-md text-white text-sm h-full leading-[30px]'>
@@ -23,8 +23,13 @@ const index = () => {
 					<Link to={'/'}>Home</Link>
 					<div className='flex flex-col justify-end items-start'>
 						<Link to={'/cart'}>
-							<img width={20} src={cart} alt='cart' className='inline' />(
-							{getTotalItem()})
+							<img
+								width={20}
+								src={cart}
+								alt='cart'
+								className='inline cursport '
+							/>
+							({getTotalItem()})
 						</Link>
 						<Link to={'/order-history'}>Order History</Link>
 					</div>

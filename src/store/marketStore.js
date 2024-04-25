@@ -93,9 +93,15 @@ const useMarketStore = create((set, get) => ({
 		}, 1000);
 	},
 	addToOrderHistory: () => {
-		set({
-			orderHistory: [...get().orderHistory, get().checkout],
-		});
+		set((state) => ({
+			orderHistory: [
+				...get().orderHistory,
+				(state.orderHistory = {
+					order: get().checkout,
+					date: new Date(),
+				}),
+			],
+		}));
 		// setTimeout(() => {
 		// set({
 		// checkout: [],

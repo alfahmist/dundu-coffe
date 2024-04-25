@@ -5,15 +5,7 @@ import { useRef } from 'react';
 
 const index = () => {
 	const { getTotalItem, notification } = useMarketStore();
-	const ref1 = useRef();
-	let a = () => {
-		let text = '';
-		setTimeout(() => {
-			text = 'top-[50px]';
-		}, 100);
-		return text;
-	};
-	console.log(a());
+
 	return (
 		<>
 			<div

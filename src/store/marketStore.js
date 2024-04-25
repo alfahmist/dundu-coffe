@@ -13,15 +13,15 @@ const useMarketStore = create((set, get) => ({
 		// },
 	],
 	notification: false,
-	setNotification: (x) => {
+	setNotification: () => {
+		set(() => ({
+			notification: true,
+		}));
 		setTimeout(() => {
 			set(() => ({
 				notification: false,
 			}));
 		}, 2000);
-		set(() => ({
-			notification: true,
-		}));
 	},
 	increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
 	removeAllBears: () => set({ bears: 0 }),

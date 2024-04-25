@@ -1,10 +1,11 @@
-import { Link, Outlet } from 'react-router-dom';
-import cart from '../assets/cart.svg';
+import { Link, Outlet, useLocation } from 'react-router-dom';
+
+import Navigation from './navigation';
 import useMarketStore from '../store/marketStore';
-import { useRef } from 'react';
 
 const index = () => {
-	const { getTotalItem, notification } = useMarketStore();
+	const { notification } = useMarketStore();
+	const path = useLocation().pathname;
 
 	return (
 		<>
@@ -17,26 +18,26 @@ const index = () => {
 					1 item added to cart
 				</div>
 			</div>
-
 			<div className='max-w-[830px] mx-auto '>
-				<div className='flex flex-row gap-10 justify-between bg-red-200 items-center px-[20px] py-[10px]'>
-					<Link to={'/'}>Home</Link>
-					<div className='flex flex-col justify-end items-start'>
-						<Link to={'/cart'}>
-							<img
-								width={20}
-								src={cart}
-								alt='cart'
-								className='inline cursport '
-							/>
-							({getTotalItem()})
-						</Link>
-						<Link to={'/order-history'}>Order History</Link>
-					</div>
-				</div>
+				<Navigation />
 				<div className='px-[20px] py-[10px] border-2'>
 					<Outlet />
 				</div>
+			</div>
+			<div
+				className={`fixed w-full h-[50px] cursor-default transition-all duration-500 bottom-[20px] 
+				}`}
+			>
+				{['/cart'].includes(path) ? (
+					<div className=' cursor-pointer flex flex-row justify-between px-[40px] bg-red-400 active:bg-red-500 text-center w-[730px] mx-auto rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'>
+						<span>Checkout</span>
+						<span>Rp20.000</span>
+					</div>
+				) : null}
+
+				{/* <div className='text-center w-[730px] bg-zinc-400 mx-auto rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'>
+					<span>Checkout</span>
+				</div> */}
 			</div>
 		</>
 	);

@@ -4,7 +4,7 @@ import Navigation from './navigation';
 import useMarketStore from '../store/marketStore';
 
 const index = () => {
-	const { notification } = useMarketStore();
+	const { notification, notificationText } = useMarketStore();
 	const path = useLocation().pathname;
 
 	return (
@@ -15,7 +15,7 @@ const index = () => {
 				}`}
 			>
 				<div className='text-center w-[430px] bg-black opacity-80 mx-auto rounded-md text-white text-sm h-full leading-[30px]'>
-					1 item added to cart
+					{notificationText}
 				</div>
 			</div>
 			<div className='max-w-[830px] mx-auto pb-[100px] '>

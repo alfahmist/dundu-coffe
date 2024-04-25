@@ -1,8 +1,13 @@
 import useMarketStore from '../../store/marketStore';
 import bin from '../../assets/bin.svg';
 const card = ({ product }) => {
-	const { addToCart, setNotification, notification, updateQuantity } =
-		useMarketStore();
+	const {
+		addToCart,
+		setNotification,
+		notification,
+		updateQuantity,
+		deleteProduct,
+	} = useMarketStore();
 	const rupiah = (number) => {
 		const options = {
 			style: 'currency',
@@ -27,7 +32,12 @@ const card = ({ product }) => {
 					<p className='font-medium text-sm'>{rupiah(product.price)}</p>
 				</div>
 				<div className='flex w-full justify-end items-center gap-2 '>
-					<button className='mr-[20px]'>
+					<button
+						onClick={() => {
+							deleteProduct(product.id);
+						}}
+						className='mr-[20px]'
+					>
 						<img src={bin} alt='bin' />
 					</button>
 

@@ -8,6 +8,7 @@ const useMarketStore = create((set, get) => ({
 		{
 			id: 213,
 			quantity: 1,
+			stock: 5,
 			name: 'name',
 			image: 'affogato.jpg',
 			price: 222,
@@ -15,9 +16,11 @@ const useMarketStore = create((set, get) => ({
 		},
 	],
 	notification: false,
-	setNotification: () => {
+	notificationText: '',
+	Notification: (text) => {
 		set(() => ({
 			notification: true,
+			notificationText: text,
 		}));
 		setTimeout(() => {
 			set(() => ({
@@ -28,15 +31,15 @@ const useMarketStore = create((set, get) => ({
 	increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
 	removeAllBears: () => set({ bears: 0 }),
 	addToCart: (obj) => {
-		get().setNotification();
+		get().Notification('1 item added to cart');
 		setTimeout(() => {
-			console.log(get().cart);
+			console.log(get().carts);
 		}, 2000);
 		// jika id nya ad
-		get().cart.some((x) => x.id === obj.id)
+		get().carts.some((x) => x.id === obj.id)
 			? // jika id nya ada maka tambah quantity
 			  set((state) => ({
-					cart: state.cart.map((x) => {
+					carts: state.carts.map((x) => {
 						if (x.id === obj.id) {
 							if (x.quantity < obj.stock) {
 								x.quantity += 1;
@@ -47,13 +50,14 @@ const useMarketStore = create((set, get) => ({
 			  }))
 			: // jika id nya tidak ada tambahkan objek baru
 			  set((state) => ({
-					cart: [
-						...state.cart,
+					carts: [
+						...state.carts,
 						{
 							id: obj.id,
 							quantity: 1,
 							stock: obj.stock,
 							name: obj.name,
+							image: obj.image,
 							price: obj.price,
 							isSelected: true,
 						},
@@ -70,6 +74,11 @@ const useMarketStore = create((set, get) => ({
 				}
 			})
 		);
+	},
+	deleteProduct: (id) => {
+		console.log(get().carts);
+		get().Notification('1 item deleted');
+		set((state) => ({ carts: state.carts.filter((x) => x.id !== id) }));
 	},
 	getTotalItem: () =>
 		get().carts.reduce((acc, current) => (acc += current.quantity), 0),

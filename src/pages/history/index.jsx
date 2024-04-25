@@ -38,16 +38,16 @@ const index = () => {
 				</div>
 				<hr className='mb-[15px]' />
 				<div className='flex flex-col '>
-					{orderHistory.map((product, index) => {
-						return <Detail key={index} index={index + 1} />;
+					{orderHistory.map((orderHistory, index) => {
+						return (
+							<Detail
+								key={index}
+								orderHistory={orderHistory}
+								index={index + 1}
+							/>
+						);
 					})}
 				</div>
-				<Link
-					to={'/payment'}
-					className='cursor-pointer mb-[10px] flex justify-center px-[40px]  mx-auto bg-red-400 active:bg-red-500  w-11/12 max-w-[350px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'
-				>
-					<span>Order</span>
-				</Link>
 			</div>
 		</>
 	);

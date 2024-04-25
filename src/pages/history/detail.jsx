@@ -3,7 +3,8 @@ import Flex from './flex';
 import Card from './card';
 import { useState } from 'react';
 
-const detail = ({ index }) => {
+const detail = ({ orderHistory, index }) => {
+	console.log(orderHistory);
 	const {
 		carts,
 		checkout,
@@ -12,9 +13,9 @@ const detail = ({ index }) => {
 		getSelectedItem,
 		selectedAll,
 		isSelectAll,
+
 		getCheckoutPrice,
 		getCheckoutTotalItem,
-		orderHistory,
 	} = useMarketStore();
 	const rupiah = (number) => {
 		const options = {
@@ -26,8 +27,17 @@ const detail = ({ index }) => {
 	let totalPrice = getCheckoutPrice();
 	let servicePrice = (getCheckoutPrice() * 6) / 100;
 	let totalPriceAfterService = getCheckoutPrice() + servicePrice;
-	const [active, setActive] = useState();
-	console.log(index);
+
+	let year = orderHistory.date.getFullYear();
+	let month = orderHistory.date.toLocaleString('default', { month: 'long' });
+	let day = orderHistory.date.getDate();
+	let hour = orderHistory.date.getHours();
+	let minute = orderHistory.date.getMinutes();
+
+	let newDate = `${day} ${month} ${year}`;
+	let newTime = `${hour}:${minute}`;
+	const [active, setActive] = useState(true);
+	console.log(month);
 	return (
 		<>
 			<button
@@ -39,49 +49,46 @@ const detail = ({ index }) => {
 				see detail order - {index}
 			</button>
 			{active && (
-				<div className=''>
-					<div className='mb-[15px]'>
-						<p className='font-bold'>
-							{getCheckoutTotalItem() > 0
-								? `${getCheckoutTotalItem()} items`
-								: '1 item'}
-						</p>
-						<Flex>
-							<p className='font-light'>Total Harga Produk</p>
-							<p>{rupiah(totalPrice)}</p>
-						</Flex>
-						<Flex>
-							<p className='font-light'>Subtotal</p>
-							<p>{rupiah(totalPrice)}</p>
-						</Flex>
-						<Flex>
-							<p className='font-light'>Service (6%)</p>
-							<p>{rupiah(servicePrice)}</p>
-						</Flex>
-						<Flex className='mt-[20px]'>
-							<p className='font-medium'>Total</p>
-							<p>{rupiah(totalPriceAfterService)}</p>
-						</Flex>
-					</div>
+				<div>
 					<hr className='mb-[15px]' />
-					{checkout.length > 0 ? (
-						<>
-							<div className='flex flex-col items-start'>
-								{checkout.map((product, index) => {
-									return <Card key={index} product={product} />;
-								})}
-							</div>
-						</>
-					) : (
-						<>
-							<Link
-								to={'/'}
-								className='text-center font-medium text-2xl my-[20px] text-blue-500 block'
-							>
-								+Tambah barang
-							</Link>
-						</>
-					)}
+					<div className='flex flex-row justify-between gap-20'>
+						<div className='flex flex-col items-start flex-1'>
+							{orderHistory.order.map((product, index) => {
+								return <Card key={index} product={product} />;
+							})}
+						</div>
+						<div className='mb-[15px] flex-1'>
+							<p className='font-bold'>
+								{getCheckoutTotalItem() > 0
+									? `${getCheckoutTotalItem()} items`
+									: '1 item'}
+							</p>
+							<Flex>
+								<p className='font-light'>Total Harga Produk</p>
+								<p>{rupiah(totalPrice)}</p>
+							</Flex>
+							<Flex>
+								<p className='font-light'>Subtotal</p>
+								<p>{rupiah(totalPrice)}</p>
+							</Flex>
+							<Flex>
+								<p className='font-light'>Service (6%)</p>
+								<p>{rupiah(servicePrice)}</p>
+							</Flex>
+							<Flex className='mt-[20px]'>
+								<p className='font-medium'>Total</p>
+								<p>{rupiah(totalPriceAfterService)}</p>
+							</Flex>
+							<Flex className='mt-[5px]'>
+								<p className='font-medium'>Tanggal Pembelian</p>
+								<p>{newDate}</p>
+							</Flex>
+							<Flex className='mt-[5px]'>
+								<p className='font-medium'>Waktu Pembelian</p>
+								<p>{newTime}</p>
+							</Flex>
+						</div>
+					</div>
 					<hr className='mb-[15px]' />
 				</div>
 			)}

@@ -5,7 +5,7 @@ const index = () => {
 	const { products } = useMarketStore();
 	return (
 		<>
-			<div className='flex flex-row flex-wrap justify-between'>
+			<div className='flex flex-row flex-wrap justify-center gap-4'>
 				{products.map((product, index) => {
 					return <Card key={index} product={product} />;
 				})}

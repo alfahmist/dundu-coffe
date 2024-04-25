@@ -9,7 +9,25 @@ const useMarketStore = create((set, get) => ({
 			id: 213,
 			quantity: 1,
 			stock: 5,
-			name: 'name',
+			name: 'name 1',
+			image: 'affogato.jpg',
+			price: 42000,
+			isSelected: true,
+		},
+		{
+			id: 22,
+			quantity: 2,
+			stock: 5,
+			name: 'name 2',
+			image: 'affogato.jpg',
+			price: 42000,
+			isSelected: true,
+		},
+		{
+			id: 11,
+			quantity: 1,
+			stock: 1,
+			name: 'name 3',
 			image: 'affogato.jpg',
 			price: 42000,
 			isSelected: true,
@@ -80,8 +98,26 @@ const useMarketStore = create((set, get) => ({
 
 	deleteProduct: (id) => {
 		console.log(get().carts);
+
 		get().Notification('1 item deleted');
 		set((state) => ({ carts: state.carts.filter((x) => x.id !== id) }));
+	},
+	deleteSelectedProduct: () => {
+		console.log(get().carts);
+
+		get().Notification(
+			`${
+				get().getSelectedItem() > 1
+					? `${get().getSelectedItem()} items deleted`
+					: `${get().getSelectedItem()} item deleted`
+			} `
+		);
+		set((state) => ({
+			carts: state.carts.filter((x) => x.isSelected === false),
+		}));
+		if (get().carts.length <= 0) {
+			set((state) => ({ isSelectAll: (state.isSelectAll = false) }));
+		}
 	},
 	setSelected: (id) => {
 		console.log(get().carts);
@@ -93,8 +129,11 @@ const useMarketStore = create((set, get) => ({
 	},
 	setSelectedAll: (checked) => {
 		console.log(get().carts);
+		set(() => ({ isSelectAll: checked }));
 		set((state) => state.carts.map((x) => (x.isSelected = checked)));
 	},
+	getSelectedItem: () =>
+		get().carts.filter((x) => x.isSelected === true).length,
 	getTotalItem: () =>
 		get().carts.reduce((acc, current) => (acc += current.quantity), 0),
 	getTotalPrice: () =>

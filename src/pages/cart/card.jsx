@@ -1,7 +1,8 @@
 import useMarketStore from '../../store/marketStore';
 import bin from '../../assets/bin.svg';
 const card = ({ product }) => {
-	const { addToCart, setNotification, notification } = useMarketStore();
+	const { addToCart, setNotification, notification, updateQuantity } =
+		useMarketStore();
 	const rupiah = (number) => {
 		const options = {
 			style: 'currency',
@@ -29,11 +30,25 @@ const card = ({ product }) => {
 					<button className='mr-[20px]'>
 						<img src={bin} alt='bin' />
 					</button>
-					<button className='text-2xl border border-red-400 rounded-full h-[30px] w-[30px] leading-[20px] hover:bg-red-400 active:bg-red-500 '>
-						-
-					</button>
-					<span className='w-[40px] text-center'>1</span>
-					<button className='text-2xl border border-red-400 rounded-full h-[30px] w-[30px] leading-[20px] hover:bg-red-400 active:bg-red-500 '>
+
+					{product.quantity > 1 ? (
+						<button
+							onClick={() => updateQuantity(product.id, product.quantity - 1)}
+							className='text-2xl border border-red-400 rounded-full h-[30px] w-[30px] leading-[20px] hover:bg-red-400 active:bg-red-500  '
+						>
+							-
+						</button>
+					) : (
+						<button className='text-2xl border border-slate-200 rounded-full h-[30px] w-[30px] leading-[20px] bg-slate-200 text-slate-500 cursor-default'>
+							-
+						</button>
+					)}
+
+					<span className='w-[40px] text-center'>{product.quantity}</span>
+					<button
+						onClick={() => updateQuantity(product.id, product.quantity + 1)}
+						className='text-2xl border border-red-400 rounded-full h-[30px] w-[30px] leading-[20px] hover:bg-red-400 active:bg-red-500 '
+					>
 						+
 					</button>
 				</div>

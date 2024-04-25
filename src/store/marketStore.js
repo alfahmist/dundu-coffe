@@ -1,16 +1,18 @@
+import { produce } from 'immer';
 import { create } from 'zustand';
 import { products } from '../data/data';
 
 const useMarketStore = create((set, get) => ({
 	products: products,
-	cart: [
-		// {
-		// 	id: 213,
-		// 	quantity: 1,
-		// 	name: 'obj.name',
-		// 	price: 222,
-		// 	isSelected: true,
-		// },
+	carts: [
+		{
+			id: 213,
+			quantity: 1,
+			name: 'name',
+			image: 'affogato.jpg',
+			price: 222,
+			isSelected: true,
+		},
 	],
 	notification: false,
 	setNotification: () => {
@@ -58,8 +60,19 @@ const useMarketStore = create((set, get) => ({
 					],
 			  }));
 	},
+	updateQuantity: (id, quantity) => {
+		console.log(get().carts);
+		set((state) =>
+			state.carts.map((x) => {
+				if (x.id === id) {
+					if (x.quantity >= 1) x.quantity = quantity;
+					if (x.quantity === 0) x.quantity = 1;
+				}
+			})
+		);
+	},
 	getTotalItem: () =>
-		get().cart.reduce((acc, current) => (acc += +current.quantity), 0),
+		get().carts.reduce((acc, current) => (acc += current.quantity), 0),
 }));
 
 export default useMarketStore;

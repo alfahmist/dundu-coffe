@@ -18,7 +18,7 @@ const index = () => {
 					1 item added to cart
 				</div>
 			</div>
-			<div className='max-w-[830px] mx-auto '>
+			<div className='max-w-[830px] mx-auto pb-[100px] '>
 				<Navigation />
 				<div className='px-[20px] py-[10px] border-2'>
 					<Outlet />

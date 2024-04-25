@@ -2,7 +2,7 @@ import useMarketStore from '../../store/marketStore';
 import Card from './card';
 
 const index = () => {
-	const { products } = useMarketStore();
+	const { carts } = useMarketStore();
 
 	return (
 		<>
@@ -15,7 +15,7 @@ const index = () => {
 				</div>
 				<hr className='mb-[40px]' />
 				<div className='flex flex-col items-start'>
-					{products.map((product, index) => {
+					{carts.map((product, index) => {
 						return <Card key={index} product={product} />;
 					})}
 				</div>

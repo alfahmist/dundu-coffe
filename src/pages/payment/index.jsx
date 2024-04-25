@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import useMarketStore from '../../store/marketStore';
 import Card from './card';
 import Flex from './flex';
+import { useState } from 'react';
 
 const index = () => {
 	const {
@@ -14,6 +15,7 @@ const index = () => {
 		isSelectAll,
 		getCheckoutPrice,
 		getCheckoutTotalItem,
+		addToOrderHistory,
 	} = useMarketStore();
 
 	const rupiah = (number) => {
@@ -26,7 +28,8 @@ const index = () => {
 	let totalPrice = getCheckoutPrice();
 	let servicePrice = (getCheckoutPrice() * 6) / 100;
 	let totalPriceAfterService = getCheckoutPrice() + servicePrice;
-
+	const [active, setActive] = useState();
+	const navigate = useNavigate();
 	return (
 		<>
 			<div>
@@ -34,12 +37,12 @@ const index = () => {
 					<div className=''>Dundu's Coffe</div>
 				</div>
 				<hr className='mb-[15px]' />
+				<Flex className={'flex-col justify-center items-center'}>
+					<p>Total Tagihan</p>
+					<p className='font-bold text-3xl'>{rupiah(totalPriceAfterService)}</p>
+				</Flex>
+				<hr className='mb-[15px]' />
 				<div className='mb-[15px]'>
-					<p className='font-bold'>
-						{getCheckoutTotalItem() > 0
-							? `${getCheckoutTotalItem()} items`
-							: '1 item'}
-					</p>
 					<Flex>
 						<p className='font-light'>Total Harga Produk</p>
 						<p>{rupiah(totalPrice)}</p>
@@ -58,33 +61,40 @@ const index = () => {
 					</Flex>
 				</div>
 				<hr className='mb-[15px]' />
-
-				{checkout.length > 0 ? (
-					<>
-						<div className='flex flex-col items-start'>
-							{checkout.map((product, index) => {
-								return <Card key={index} product={product} />;
-							})}
-						</div>
-					</>
-				) : (
-					<>
-						<Link
-							to={'/'}
-							className='text-center font-medium text-2xl my-[20px] text-blue-500 block'
-						>
-							+Tambah barang
-						</Link>
-					</>
+				<button
+					className='mb-[15px]'
+					onClick={() => {
+						setActive(!active);
+					}}
+				>
+					see detail order
+				</button>
+				<p></p>
+				{active && (
+					<div className='flex flex-col items-start'>
+						{checkout.map((product, index) => {
+							return <Card key={index} product={product} />;
+						})}
+					</div>
 				)}
 			</div>
+
 			<hr className='mb-[15px]' />
-			<Link
-				to={'/payment'}
+			<button
+				// to={'/'}
+				onClick={() => {
+					let bayar = prompt('Input Bayar');
+					let sisa = bayar - totalPriceAfterService;
+					sisa > 0 ? alert('kembalian : ' + rupiah(sisa)) : null;
+					sisa < 0 ? alert('kurang bayar') : null;
+					sisa === 0 ? alert('Pas') : null;
+					sisa === 0 ? addToOrderHistory() : null;
+					sisa === 0 ? navigate('/') : null;
+				}}
 				className='cursor-pointer mb-[10px] flex justify-center px-[40px]  mx-auto bg-red-400 active:bg-red-500  w-11/12 max-w-[350px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'
 			>
-				<span>Order</span>
-			</Link>
+				<span>Bayar</span>
+			</button>
 		</>
 	);
 };

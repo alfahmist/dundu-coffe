@@ -4,6 +4,7 @@ import Cart from '../pages/cart';
 import Layout from '../layout';
 import OrderHistory from '../pages/history';
 import Checkout from '../pages/checkout';
+import Payment from '../pages/payment';
 
 const index = () => {
 	const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const index = () => {
 				{
 					path: '/checkout',
 					element: <Checkout />,
+				},
+				{
+					path: '/payment',
+					element: <Payment />,
 				},
 			],
 		},

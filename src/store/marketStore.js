@@ -59,6 +59,7 @@ const useMarketStore = create((set, get) => ({
 			price: 32000,
 		},
 	],
+	orderHistory: [],
 	notification: false,
 	notificationText: '',
 	isSelectAll: false,
@@ -87,6 +88,17 @@ const useMarketStore = create((set, get) => ({
 				carts: [],
 			});
 		}, 1000);
+	},
+	addToOrderHistory: () => {
+		set({
+			orderHistory: [...get().orderHistory, get().checkout],
+		});
+		// setTimeout(() => {
+		// set({
+		// checkout: [],
+		// });
+		// }, 1000);
+		console.log(get().orderHistory);
 	},
 	addToCart: (obj) => {
 		get().Notification('1 item added to cart');

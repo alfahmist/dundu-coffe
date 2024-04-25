@@ -17,6 +17,7 @@ const useMarketStore = create((set, get) => ({
 	],
 	notification: false,
 	notificationText: '',
+
 	Notification: (text) => {
 		set(() => ({
 			notification: true,
@@ -75,6 +76,7 @@ const useMarketStore = create((set, get) => ({
 			})
 		);
 	},
+
 	deleteProduct: (id) => {
 		console.log(get().carts);
 		get().Notification('1 item deleted');

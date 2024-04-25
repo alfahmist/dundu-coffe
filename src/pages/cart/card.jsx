@@ -34,7 +34,7 @@ const card = ({ product }) => {
 				<div className='flex w-full justify-end items-center gap-2 '>
 					<button
 						onClick={() => {
-							deleteProduct(product.id);
+							confirm('delete') ? deleteProduct(product.id) : null;
 						}}
 						className='mr-[20px]'
 					>

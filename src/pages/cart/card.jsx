@@ -7,6 +7,7 @@ const card = ({ product }) => {
 		notification,
 		updateQuantity,
 		deleteProduct,
+		setSelected,
 	} = useMarketStore();
 	const rupiah = (number) => {
 		const options = {
@@ -21,7 +22,14 @@ const card = ({ product }) => {
 			<div
 				className={`flex flex-row h-[150px] w-full flex-wrap overflow-hidden mb-[50px] pb-[20px]  gap-2 border-b-2 `}
 			>
-				<input type='checkbox' className='self-start w-[18px] h-[18px] mr-4' />
+				<input
+					type='checkbox'
+					className='self-start w-[18px] h-[18px] mr-4'
+					onChange={() => {
+						setSelected(product.id);
+					}}
+					checked={product.isSelected}
+				/>
 				<img
 					src={'/src/assets/images/' + product.image}
 					alt={product.name}

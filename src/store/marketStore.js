@@ -11,12 +11,13 @@ const useMarketStore = create((set, get) => ({
 			stock: 5,
 			name: 'name',
 			image: 'affogato.jpg',
-			price: 222,
+			price: 42000,
 			isSelected: true,
 		},
 	],
 	notification: false,
 	notificationText: '',
+	isSelectAll: false,
 
 	Notification: (text) => {
 		set(() => ({
@@ -82,8 +83,24 @@ const useMarketStore = create((set, get) => ({
 		get().Notification('1 item deleted');
 		set((state) => ({ carts: state.carts.filter((x) => x.id !== id) }));
 	},
+	setSelected: (id) => {
+		console.log(get().carts);
+		set((state) =>
+			state.carts.map((x) => {
+				if (x.id === id) x.isSelected = !x.isSelected;
+			})
+		);
+	},
+	setSelectedAll: (checked) => {
+		console.log(get().carts);
+		set((state) => state.carts.map((x) => (x.isSelected = checked)));
+	},
 	getTotalItem: () =>
 		get().carts.reduce((acc, current) => (acc += current.quantity), 0),
+	getTotalPrice: () =>
+		get()
+			.carts.filter((x) => x.isSelected === true)
+			.reduce((acc, current) => (acc += current.quantity * current.price), 0),
 }));
 
 export default useMarketStore;

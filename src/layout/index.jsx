@@ -4,9 +4,15 @@ import Navigation from './navigation';
 import useMarketStore from '../store/marketStore';
 
 const index = () => {
-	const { notification, notificationText } = useMarketStore();
+	const { notification, notificationText, getTotalPrice } = useMarketStore();
 	const path = useLocation().pathname;
-
+	const rupiah = (number) => {
+		const options = {
+			style: 'currency',
+			currency: 'IDR',
+		};
+		return new Intl.NumberFormat('id-ID', options).format(number);
+	};
 	return (
 		<>
 			<div
@@ -30,7 +36,7 @@ const index = () => {
 				{['/cart'].includes(path) ? (
 					<div className='cursor-pointer flex flex-row justify-between px-[40px]  mx-auto bg-red-400 active:bg-red-500 text-center w-11/12 max-w-[730px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'>
 						<span>Checkout</span>
-						<span>Rp20.000</span>
+						<span>{rupiah(getTotalPrice())}</span>
 					</div>
 				) : null}
 

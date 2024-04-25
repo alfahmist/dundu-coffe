@@ -82,13 +82,12 @@ const useMarketStore = create((set, get) => ({
 	removeAllBears: () => set({ bears: 0 }),
 	checkoutCart: () => {
 		console.log(get().checkout);
-
 		set({
-			checkout: get().carts,
+			checkout: get().getSelectedItem(),
 		});
 		setTimeout(() => {
 			set({
-				carts: [],
+				carts: get().getUnSelectedItem(),
 			});
 		}, 1000);
 	},
@@ -191,8 +190,8 @@ const useMarketStore = create((set, get) => ({
 		set(() => ({ isSelectAll: checked }));
 		set((state) => state.carts.map((x) => (x.isSelected = checked)));
 	},
-	getSelectedItem: () =>
-		get().carts.filter((x) => x.isSelected === true).length,
+	getSelectedItem: () => get().carts.filter((x) => x.isSelected === true),
+	getUnSelectedItem: () => get().carts.filter((x) => x.isSelected === false),
 	getTotalItem: () =>
 		get().carts.reduce((acc, current) => (acc += current.quantity), 0),
 	getTotalPrice: () =>

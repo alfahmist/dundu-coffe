@@ -16,7 +16,7 @@ const card = ({ product }) => {
 		};
 		return new Intl.NumberFormat('id-ID', options).format(number);
 	};
-
+	let harga = product.price * product.quantity;
 	return (
 		<>
 			<div
@@ -37,7 +37,7 @@ const card = ({ product }) => {
 				/>
 				<div className='flex flex-col ml-4 gap-2'>
 					<p className='font-medium'>{product.name}</p>
-					<p className='font-medium text-sm'>{rupiah(product.price)}</p>
+					<p className='font-medium text-sm'>{rupiah(harga)}</p>
 				</div>
 				<div className='flex w-full justify-end items-center gap-2 '>
 					<button

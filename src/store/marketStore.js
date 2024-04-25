@@ -63,7 +63,10 @@ const useMarketStore = create((set, get) => ({
 	notification: false,
 	notificationText: '',
 	isSelectAll: false,
-
+	isLoading: false,
+	setIsLoading: (loading) => {
+		set({ isLoading: loading });
+	},
 	Notification: (text) => {
 		set(() => ({
 			notification: true,

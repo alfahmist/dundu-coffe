@@ -16,6 +16,8 @@ const index = () => {
 		getCheckoutPrice,
 		getCheckoutTotalItem,
 		addToOrderHistory,
+		isLoading,
+		setIsLoading,
 	} = useMarketStore();
 
 	const rupiah = (number) => {
@@ -37,7 +39,7 @@ const index = () => {
 					<div className=''>Dundu's Coffe</div>
 				</div>
 				<hr className='mb-[15px]' />
-				<Flex className={'flex-col justify-center items-center'}>
+				<Flex className={'flex-col justify-center items-center mb-[15px]'}>
 					<p>Total Tagihan</p>
 					<p className='font-bold text-3xl'>{rupiah(totalPriceAfterService)}</p>
 				</Flex>
@@ -87,13 +89,21 @@ const index = () => {
 					let sisa = bayar - totalPriceAfterService;
 					sisa > 0 ? alert('kembalian : ' + rupiah(sisa)) : null;
 					sisa < 0 ? alert('kurang bayar') : null;
-					sisa === 0 ? alert('Pas') : null;
 					sisa === 0 ? addToOrderHistory() : null;
-					sisa === 0 ? navigate('/') : null;
+					if (sisa === 0) {
+						setIsLoading(true);
+						setTimeout(() => {
+							alert('Pembayaran Berhasil');
+							navigate('/');
+							setIsLoading(false);
+						}, 1000);
+					}
 				}}
-				className='cursor-pointer mb-[10px] flex justify-center px-[40px]  mx-auto bg-red-400 active:bg-red-500  w-11/12 max-w-[350px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'
+				className={`${
+					isLoading && 'animate-pulse'
+				} cursor-pointer mb-[10px] flex justify-center px-[40px] mx-auto bg-red-500 hover:bg-red-600 active:bg-red-700  w-11/12 max-w-[350px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md`}
 			>
-				<span>Bayar</span>
+				{isLoading ? <>Processing...</> : <>Bayar</>}
 			</button>
 		</>
 	);

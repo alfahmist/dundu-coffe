@@ -1,4 +1,5 @@
 import useMarketStore from '../../store/marketStore';
+import bin from '../../assets/bin.svg';
 const card = ({ product }) => {
 	const {
 		addToCart,

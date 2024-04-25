@@ -24,20 +24,20 @@ const detail = ({ orderHistory, index }) => {
 		};
 		return new Intl.NumberFormat('id-ID', options).format(number);
 	};
-	let totalPrice = getCheckoutPrice();
-	let servicePrice = (getCheckoutPrice() * 6) / 100;
-	let totalPriceAfterService = getCheckoutPrice() + servicePrice;
+	let totalPrice = orderHistory.totalPrice;
+	let servicePrice = (orderHistory.totalPrice * 6) / 100;
+	let totalPriceAfterService = orderHistory.totalPrice + servicePrice;
 
-	let year = orderHistory.date.getFullYear();
-	let month = orderHistory.date.toLocaleString('default', { month: 'long' });
-	let day = orderHistory.date.getDate();
-	let hour = orderHistory.date.getHours();
-	let minute = orderHistory.date.getMinutes();
-
-	let newDate = `${day} ${month} ${year}`;
-	let newTime = `${hour}:${minute}`;
-	const [active, setActive] = useState(true);
-	console.log(month);
+	let newDate = orderHistory.date.toLocaleDateString('default', {
+		weekday: 'long',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+	let newTime = orderHistory.date.toLocaleTimeString('en-US');
+	const [active, setActive] = useState(false);
+	console.log(newDate);
+	console.log(newTime);
 	return (
 		<>
 			<button
@@ -59,9 +59,9 @@ const detail = ({ orderHistory, index }) => {
 						</div>
 						<div className='mb-[15px] flex-1'>
 							<p className='font-bold'>
-								{getCheckoutTotalItem() > 0
-									? `${getCheckoutTotalItem()} items`
-									: '1 item'}
+								{orderHistory.totalItem > 0
+									? `${orderHistory.totalItem} items`
+									: `${orderHistory.totalItem} item`}
 							</p>
 							<Flex>
 								<p className='font-light'>Total Harga Produk</p>

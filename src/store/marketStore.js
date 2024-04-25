@@ -34,30 +34,30 @@ const useMarketStore = create((set, get) => ({
 		},
 	],
 	checkout: [
-		{
-			id: 11,
-			quantity: 1,
-			stock: 1,
-			name: 'name 1',
-			image: 'affogato.jpg',
-			price: 41000,
-		},
-		{
-			id: 13,
-			quantity: 2,
-			stock: 1,
-			name: 'name 2',
-			image: 'affogato.jpg',
-			price: 2000,
-		},
-		{
-			id: 15,
-			quantity: 3,
-			stock: 1,
-			name: 'name 3',
-			image: 'affogato.jpg',
-			price: 32000,
-		},
+		// {
+		// 	id: 11,
+		// 	quantity: 1,
+		// 	stock: 1,
+		// 	name: 'name 1',
+		// 	image: 'affogato.jpg',
+		// 	price: 41000,
+		// },
+		// {
+		// 	id: 13,
+		// 	quantity: 2,
+		// 	stock: 1,
+		// 	name: 'name 2',
+		// 	image: 'affogato.jpg',
+		// 	price: 2000,
+		// },
+		// {
+		// 	id: 15,
+		// 	quantity: 3,
+		// 	stock: 1,
+		// 	name: 'name 3',
+		// 	image: 'affogato.jpg',
+		// 	price: 32000,
+		// },
 	],
 	orderHistory: [],
 	notification: false,
@@ -98,14 +98,16 @@ const useMarketStore = create((set, get) => ({
 				(state.orderHistory = {
 					order: get().checkout,
 					date: new Date(),
+					totalPrice: get().getCheckoutPrice(),
+					totalItem: get().getCheckoutTotalItem(),
 				}),
 			],
 		}));
-		// setTimeout(() => {
-		// set({
-		// checkout: [],
-		// });
-		// }, 1000);
+		setTimeout(() => {
+			set({
+				checkout: [],
+			});
+		}, 5000);
 		console.log(get().orderHistory);
 	},
 	addToCart: (obj) => {
@@ -153,7 +155,6 @@ const useMarketStore = create((set, get) => ({
 			})
 		);
 	},
-
 	deleteProduct: (id) => {
 		console.log(get().carts);
 

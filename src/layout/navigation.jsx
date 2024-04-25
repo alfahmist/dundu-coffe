@@ -11,13 +11,8 @@ const navigation = () => {
 				<Link to={'/'}>Home</Link>
 				<div className='flex flex-col justify-end items-start'>
 					<Link to={'/cart'}>
-						<img
-							width={20}
-							src={cart}
-							alt='cart'
-							className='inline cursport '
-						/>
-						({getTotalItem()})
+						<img src={cart} alt='cart' className='inline cursport ' />(
+						{getTotalItem()})
 					</Link>
 					<Link to={'/order-history'}>Order History</Link>
 				</div>

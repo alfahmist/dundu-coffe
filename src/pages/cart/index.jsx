@@ -7,13 +7,14 @@ const index = () => {
 	return (
 		<>
 			<div>
-				<div>Dundu's Coffe</div>
-				<hr />
-				<input type='checkbox' name='all' id='all' />
-				<label htmlFor='all'>Pilih Semua</label>
-				<br />
+				<div className='mb-[15px]'>Dundu's Coffe</div>
+				<hr className='mb-[15px]' />
+				<div className='mb-[15px]'>
+					<input type='checkbox' name='all' id='all' className='mr-[10px]' />
+					<label htmlFor='all'>Pilih Semua</label>
+				</div>
+				<hr className='mb-[40px]' />
 				<div className='flex flex-col items-start'>
-					<input type='checkbox' name='all' id='all' />
 					{products.map((product, index) => {
 						return <Card key={index} product={product} />;
 					})}

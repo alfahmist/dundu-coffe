@@ -25,11 +25,10 @@ const index = () => {
 				</div>
 			</div>
 			<div
-				className={`fixed w-full h-[50px] cursor-default transition-all duration-500 bottom-[20px] 
-				}`}
+				className={`fixed w-full h-[50px] cursor-default transition-all duration-500 bottom-[20px]`}
 			>
 				{['/cart'].includes(path) ? (
-					<div className=' cursor-pointer flex flex-row justify-between px-[40px] bg-red-400 active:bg-red-500 text-center w-[730px] mx-auto rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'>
+					<div className='cursor-pointer flex flex-row justify-between px-[40px]  mx-auto bg-red-400 active:bg-red-500 text-center w-11/12 max-w-[730px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'>
 						<span>Checkout</span>
 						<span>Rp20.000</span>
 					</div>

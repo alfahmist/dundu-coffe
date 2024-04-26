@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 import Navigation from './navigation';
 import useMarketStore from '../store/marketStore';
 import { rupiah } from '../utils/toRupiah';
+import Modal from '../components/Modal';
 
 const index = () => {
 	const { notification, notificationText, getTotalPrice, checkoutCart } =

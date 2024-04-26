@@ -1,24 +1,8 @@
-import useMarketStore from '../../store/marketStore';
+import Card from '../pages/history/card';
+import { rupiah } from '../utils/toRupiah';
 import Flex from './flex';
-import Card from './card';
-import { useState } from 'react';
-import { rupiah } from '../../utils/toRupiah';
-import Modal from '../../components/Modal';
 
-const detail = ({ orderHistory, index }) => {
-	console.log(orderHistory);
-	const {
-		carts,
-		checkout,
-		setSelectedAll,
-		deleteSelectedProduct,
-		getSelectedItem,
-		selectedAll,
-		isSelectAll,
-		getCheckoutPrice,
-		getCheckoutTotalItem,
-	} = useMarketStore();
-
+const Modal = ({ orderHistory, setActive }) => {
 	let totalPrice = orderHistory.totalPrice;
 	let servicePrice = (orderHistory.totalPrice * 6) / 100;
 	let totalPriceAfterService = orderHistory.totalPrice + servicePrice;
@@ -30,30 +14,27 @@ const detail = ({ orderHistory, index }) => {
 		day: 'numeric',
 	});
 	let newTime = orderHistory.date.toLocaleTimeString('en-US');
-	const [active, setActive] = useState(false);
-	console.log(newDate);
-	console.log(newTime);
-	return (
-		<>
-			{active && (
-				<Modal orderHistory={orderHistory} setActive={setActive}></Modal>
-			)}
-			<button
-				className='mb-[15px] text-left'
-				onClick={() => {
-					setActive(!active);
-				}}
-			>
-				see detail order - {index}
-			</button>
 
-			<div className='overflow-y-auto'>
-				<hr className='mb-[15px]' />
+	console.log(orderHistory);
+	return (
+		<div className='fixed border h-[600px] w-[800px]  mx-auto my-auto left-0 right-0 top-0 bottom-0 bg-white rounded-xl'>
+			<div className='flex justify-between py-[10px] px-[15px]'>
+				<h1>Detail Transaksi</h1>
+				<button
+					onClick={() => {
+						setActive(false);
+					}}
+				>
+					X
+				</button>
+			</div>
+			<hr />
+			<div className='py-[10px] px-[15px]'>
+				<h1 className='mb-2'>Detail Produk</h1>
 				<div className='flex flex-row justify-between gap-20'>
 					<div className='flex flex-col items-start flex-1'>
 						{orderHistory.order.map((product, index) => {
-							if (index === 0) console.log('AWdawdwa');
-							if (index === 0) return <Card key={index} product={product} />;
+							return <Card key={index} product={product} />;
 						})}
 					</div>
 					<div className='mb-[15px] flex-1'>
@@ -94,20 +75,11 @@ const detail = ({ orderHistory, index }) => {
 							<p className='font-medium'>Waktu Pembelian</p>
 							<p>{newTime}</p>
 						</Flex>
-						<button
-							onClick={() => {
-								setActive(!active);
-							}}
-							className='mt-[5px] font-medium'
-						>
-							Lihat Detail Transaksi
-						</button>
 					</div>
 				</div>
-				<hr className='mb-[15px]' />
 			</div>
-		</>
+		</div>
 	);
 };
 
-export default detail;
+export default Modal;

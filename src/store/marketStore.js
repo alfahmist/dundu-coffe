@@ -91,12 +91,13 @@ const useMarketStore = create((set, get) => ({
 			});
 		}, 1000);
 	},
-
+	// payment
 	addToOrderHistory: () => {
 		set((state) => ({
 			orderHistory: [
 				...get().orderHistory,
 				(state.orderHistory = {
+					id: isNaN(state.id) ? 1 : state.id + 1,
 					order: get().checkout,
 					date: new Date(),
 					totalPrice: get().getCheckoutPrice(),
@@ -189,6 +190,7 @@ const useMarketStore = create((set, get) => ({
 			})
 		);
 	},
+	updateStock: () => {},
 	setSelectedAll: (checked) => {
 		console.log(get().carts);
 		set(() => ({ isSelectAll: checked }));

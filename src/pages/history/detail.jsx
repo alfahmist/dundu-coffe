@@ -17,6 +17,7 @@ const detail = ({ orderHistory, index }) => {
 		isSelectAll,
 		getCheckoutPrice,
 		getCheckoutTotalItem,
+		sendToModal,
 	} = useMarketStore();
 
 	let totalPrice = orderHistory.totalPrice;
@@ -35,9 +36,6 @@ const detail = ({ orderHistory, index }) => {
 	console.log(newTime);
 	return (
 		<>
-			{active && (
-				<Modal orderHistory={orderHistory} setActive={setActive}></Modal>
-			)}
 			<button
 				className='mb-[15px] text-left'
 				onClick={() => {
@@ -96,7 +94,7 @@ const detail = ({ orderHistory, index }) => {
 						</Flex>
 						<button
 							onClick={() => {
-								setActive(!active);
+								sendToModal(orderHistory);
 							}}
 							className='mt-[5px] font-medium'
 						>

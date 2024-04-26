@@ -103,6 +103,8 @@ const useMarketStore = create((set, get) => ({
 	notificationText: '',
 	isSelectAll: false,
 	isLoading: false,
+	modal: [],
+	modalActive: false,
 	setIsLoading: (loading) => {
 		set({ isLoading: loading });
 	},
@@ -135,6 +137,12 @@ const useMarketStore = create((set, get) => ({
 			pendingPayment: [...state.checkout],
 		}));
 		console.log(get().pendingPayment);
+	},
+	sendToModal: (obj) => {
+		set({ modal: obj });
+	},
+	closeModal: () => {
+		set({ modal: [] });
 	},
 	// payment
 	addToOrderHistory: (bayar, kembalian) => {

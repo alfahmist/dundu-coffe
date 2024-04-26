@@ -6,7 +6,8 @@ const card = ({ product }) => {
 		addToCart,
 		setNotification,
 		notification,
-		updateQuantity,
+		addQuantity,
+		substractQuantity,
 		deleteProduct,
 		setSelected,
 	} = useMarketStore();
@@ -34,6 +35,7 @@ const card = ({ product }) => {
 					<p className='font-medium'>{product.name}</p>
 					<p className='font-medium text-sm'>{rupiah(harga)}</p>
 				</div>
+				<p className='ml-auto'>stock sisa : {product.stock}</p>
 				<div className='flex w-full justify-end items-center gap-2 '>
 					<button
 						onClick={() => {
@@ -46,7 +48,7 @@ const card = ({ product }) => {
 
 					{product.quantity > 1 ? (
 						<button
-							onClick={() => updateQuantity(product.id, product.quantity - 1)}
+							onClick={() => substractQuantity(product.id)}
 							className='text-2xl border border-red-400 rounded-full h-[30px] w-[30px] leading-[20px] hover:bg-red-400 active:bg-red-500  '
 						>
 							-
@@ -58,12 +60,18 @@ const card = ({ product }) => {
 					)}
 
 					<span className='w-[40px] text-center'>{product.quantity}</span>
-					<button
-						onClick={() => updateQuantity(product.id, product.quantity + 1)}
-						className='text-2xl border border-red-400 rounded-full h-[30px] w-[30px] leading-[20px] hover:bg-red-400 active:bg-red-500 '
-					>
-						+
-					</button>
+					{product.quantity < product.stock ? (
+						<button
+							onClick={() => addQuantity(product.id)}
+							className='text-2xl border border-red-400 rounded-full h-[30px] w-[30px] leading-[20px] hover:bg-red-400 active:bg-red-500 '
+						>
+							+
+						</button>
+					) : (
+						<button className='text-2xl border border-slate-200 rounded-full h-[30px] w-[30px] leading-[20px] bg-slate-200 text-slate-500 cursor-default'>
+							+
+						</button>
+					)}
 				</div>
 			</div>
 		</>

@@ -127,45 +127,68 @@ const useMarketStore = create((set, get) => ({
 		console.log(get().orderHistory);
 	},
 	addToCart: (obj) => {
-		get().Notification('1 item added to cart');
 		setTimeout(() => {
 			console.log(get().carts);
 		}, 2000);
 		// jika id nya ad
-		get().carts.some((x) => x.id === obj.id)
-			? // jika id nya ada maka tambah quantity
-			  set((state) => ({
-					carts: state.carts.map((x) => {
-						if (x.id === obj.id) {
-							if (x.quantity < obj.stock) {
-								x.quantity += 1;
-							}
+		if (get().carts.some((x) => x.id === obj.id)) {
+			// jika id nya ada maka tambah quantity
+			set((state) => ({
+				carts: state.carts.map((x) => {
+					if (x.id === obj.id) {
+						if (x.quantity < obj.stock) {
+							x.quantity += 1;
+							get().Notification('1 item added to cart');
+						} else {
+							get().Notification(
+								'jumlah barang yang kamu pesan melebihi sudah melebihi stock'
+							);
 						}
-						return x;
-					}),
-			  }))
-			: // jika id nya tidak ada tambahkan objek baru
-			  set((state) => ({
-					carts: [
-						...state.carts,
-						{
-							id: obj.id,
-							quantity: 1,
-							stock: obj.stock,
-							name: obj.name,
-							image: obj.image,
-							price: obj.price,
-							isSelected: true,
-						},
-					],
-			  }));
+					}
+					return x;
+				}),
+			}));
+		} else {
+			// jika id nya tidak ada tambahkan objek baru
+			get().Notification('1 item added to cart');
+			set((state) => ({
+				carts: [
+					...state.carts,
+					{
+						id: obj.id,
+						quantity: 1,
+						stock: obj.stock,
+						name: obj.name,
+						image: obj.image,
+						price: obj.price,
+						isSelected: true,
+					},
+				],
+			}));
+		}
 	},
-	updateQuantity: (id, quantity) => {
+	addQuantity: (id) => {
 		console.log(get().carts);
 		set((state) =>
 			state.carts.map((x) => {
 				if (x.id === id) {
-					if (x.quantity >= 1) x.quantity = quantity;
+					if (x.quantity < x.stock) {
+						if (x.quantity >= 1) x.quantity = x.quantity + 1;
+						if (x.quantity === 0) x.quantity = 1;
+					} else {
+						get().Notification('Maaf Stock Sisa :' + x.stock);
+						x.quantity = x.stock;
+					}
+				}
+			})
+		);
+	},
+	substractQuantity: (id) => {
+		console.log(get().carts);
+		set((state) =>
+			state.carts.map((x) => {
+				if (x.id === id) {
+					if (x.quantity >= 1) x.quantity = x.quantity - 1;
 					if (x.quantity === 0) x.quantity = 1;
 				}
 			})

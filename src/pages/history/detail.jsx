@@ -48,7 +48,8 @@ const detail = ({ orderHistory, index }) => {
 					<div className='flex flex-row justify-between gap-20'>
 						<div className='flex flex-col items-start flex-1'>
 							{orderHistory.order.map((product, index) => {
-								return <Card key={index} product={product} />;
+								if (index === 0) console.log('AWdawdwa');
+								if (index === 0) return <Card key={index} product={product} />;
 							})}
 						</div>
 						<div className='mb-[15px] flex-1'>

@@ -2,6 +2,7 @@ import useMarketStore from '../../store/marketStore';
 import Flex from './flex';
 import Card from './card';
 import { useState } from 'react';
+import { rupiah } from '../../utils/toRupiah';
 
 const detail = ({ orderHistory, index }) => {
 	console.log(orderHistory);
@@ -17,13 +18,7 @@ const detail = ({ orderHistory, index }) => {
 		getCheckoutPrice,
 		getCheckoutTotalItem,
 	} = useMarketStore();
-	const rupiah = (number) => {
-		const options = {
-			style: 'currency',
-			currency: 'IDR',
-		};
-		return new Intl.NumberFormat('id-ID', options).format(number);
-	};
+
 	let totalPrice = orderHistory.totalPrice;
 	let servicePrice = (orderHistory.totalPrice * 6) / 100;
 	let totalPriceAfterService = orderHistory.totalPrice + servicePrice;

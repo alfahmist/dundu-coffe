@@ -5,33 +5,33 @@ import { products } from '../data/data';
 const useMarketStore = create((set, get) => ({
 	products: products,
 	carts: [
-		{
-			id: 213,
-			quantity: 1,
-			stock: 5,
-			name: 'name 1',
-			image: 'affogato.jpg',
-			price: 42000,
-			isSelected: true,
-		},
-		{
-			id: 22,
-			quantity: 2,
-			stock: 5,
-			name: 'name 2',
-			image: 'affogato.jpg',
-			price: 42000,
-			isSelected: true,
-		},
-		{
-			id: 11,
-			quantity: 1,
-			stock: 1,
-			name: 'name 3',
-			image: 'affogato.jpg',
-			price: 42000,
-			isSelected: true,
-		},
+		// {
+		// 	id: 213,
+		// 	quantity: 1,
+		// 	stock: 5,
+		// 	name: 'name 1',
+		// 	image: 'affogato.jpg',
+		// 	price: 42000,
+		// 	isSelected: true,
+		// },
+		// {
+		// 	id: 22,
+		// 	quantity: 2,
+		// 	stock: 5,
+		// 	name: 'name 2',
+		// 	image: 'affogato.jpg',
+		// 	price: 42000,
+		// 	isSelected: true,
+		// },
+		// {
+		// 	id: 11,
+		// 	quantity: 1,
+		// 	stock: 1,
+		// 	name: 'name 3',
+		// 	image: 'affogato.jpg',
+		// 	price: 42000,
+		// 	isSelected: true,
+		// },
 	],
 	checkout: [
 		// {
@@ -91,6 +91,7 @@ const useMarketStore = create((set, get) => ({
 			});
 		}, 1000);
 	},
+
 	addToOrderHistory: () => {
 		set((state) => ({
 			orderHistory: [
@@ -103,11 +104,13 @@ const useMarketStore = create((set, get) => ({
 				}),
 			],
 		}));
+
 		setTimeout(() => {
 			set({
 				checkout: [],
 			});
-		}, 5000);
+		}, 2000);
+
 		console.log(get().orderHistory);
 	},
 	addToCart: (obj) => {

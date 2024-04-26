@@ -1,5 +1,6 @@
 import useMarketStore from '../../store/marketStore';
 import bin from '../../assets/bin.svg';
+import { rupiah } from '../../utils/toRupiah';
 const card = ({ product }) => {
 	const {
 		addToCart,
@@ -9,13 +10,7 @@ const card = ({ product }) => {
 		deleteProduct,
 		setSelected,
 	} = useMarketStore();
-	const rupiah = (number) => {
-		const options = {
-			style: 'currency',
-			currency: 'IDR',
-		};
-		return new Intl.NumberFormat('id-ID', options).format(number);
-	};
+
 	let harga = product.price * product.quantity;
 	return (
 		<>

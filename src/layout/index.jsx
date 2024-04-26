@@ -2,18 +2,13 @@ import { Link, Outlet, useLocation } from 'react-router-dom';
 
 import Navigation from './navigation';
 import useMarketStore from '../store/marketStore';
+import { rupiah } from '../utils/toRupiah';
 
 const index = () => {
 	const { notification, notificationText, getTotalPrice, checkoutCart } =
 		useMarketStore();
 	const path = useLocation().pathname;
-	const rupiah = (number) => {
-		const options = {
-			style: 'currency',
-			currency: 'IDR',
-		};
-		return new Intl.NumberFormat('id-ID', options).format(number);
-	};
+
 	return (
 		<>
 			<div

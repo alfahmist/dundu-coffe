@@ -99,7 +99,7 @@ const useMarketStore = create((set, get) => ({
 		console.log(get().pendingPayment);
 	},
 	// payment
-	addToOrderHistory: () => {
+	addToOrderHistory: (bayar, kembalian) => {
 		set((state) => ({
 			orderHistory: [
 				...get().orderHistory,
@@ -109,6 +109,8 @@ const useMarketStore = create((set, get) => ({
 					date: new Date(),
 					totalPrice: get().getCheckoutPrice(),
 					totalItem: get().getCheckoutTotalItem(),
+					tunai: bayar,
+					kembalian: kembalian,
 				}),
 			],
 		}));

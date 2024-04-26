@@ -14,7 +14,6 @@ const detail = ({ orderHistory, index }) => {
 		getSelectedItem,
 		selectedAll,
 		isSelectAll,
-
 		getCheckoutPrice,
 		getCheckoutTotalItem,
 	} = useMarketStore();
@@ -70,11 +69,19 @@ const detail = ({ orderHistory, index }) => {
 								<p className='font-light'>Service (6%)</p>
 								<p>{rupiah(servicePrice)}</p>
 							</Flex>
-							<Flex className='mt-[20px]'>
+							<Flex>
 								<p className='font-medium'>Total</p>
 								<p>{rupiah(totalPriceAfterService)}</p>
 							</Flex>
-							<Flex className='mt-[5px]'>
+							<Flex className={'mt-[20px]'}>
+								<p className='font-medium'>Tunai</p>
+								<p>{rupiah(orderHistory.tunai)}</p>
+							</Flex>
+							<Flex>
+								<p className='font-medium'>Kembalian</p>
+								<p>{rupiah(orderHistory.kembalian)}</p>
+							</Flex>
+							<Flex className='mt-[20px]'>
 								<p className='font-medium'>Tanggal Pembelian</p>
 								<p>{newDate}</p>
 							</Flex>

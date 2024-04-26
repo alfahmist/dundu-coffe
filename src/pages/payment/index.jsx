@@ -83,9 +83,9 @@ const index = () => {
 					let sisa = bayar - totalPriceAfterService;
 					sisa > 0 ? alert('kembalian : ' + rupiah(sisa)) : null;
 					sisa < 0 ? alert('kurang bayar') : null;
-					sisa === 0 ? addToOrderHistory() : null;
-					if (sisa === 0) {
+					if (sisa === 0 || sisa > 0) {
 						setIsLoading(true);
+						addToOrderHistory(bayar, sisa);
 						setTimeout(() => {
 							alert('Pembayaran Berhasil');
 							navigate('/');

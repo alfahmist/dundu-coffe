@@ -33,7 +33,7 @@ const index = () => {
 					<Link
 						onClick={() => checkoutCart()}
 						to={'/checkout'}
-						className='cursor-pointer flex flex-row justify-between px-[40px]  mx-auto bg-red-400 active:bg-red-500 text-center w-11/12 max-w-[730px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'
+						className='cursor-pointer flex flex-row justify-between px-[40px]  mx-auto bg-red-500 active:bg-red-600 text-center w-11/12 max-w-[730px] rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'
 					>
 						<span>Checkout</span>
 						<span>{rupiah(getTotalPrice())}</span>

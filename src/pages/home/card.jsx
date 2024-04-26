@@ -1,3 +1,4 @@
+import { Button } from '../../components/Button';
 import useMarketStore from '../../store/marketStore';
 import { rupiah } from '../../utils/toRupiah';
 
@@ -27,18 +28,15 @@ const card = ({ product }) => {
 					</div>
 
 					{product.stock !== 0 ? (
-						<button
-							className='mt-auto text-xs font-medium border border-red-400 px-4 py-2 rounded-[15px] self-end hover:bg-red-400 hover:text-white active:bg-red-500'
+						<Button
 							onClick={() => {
 								notification ? null : addToCart(product);
 							}}
 						>
 							+Keranjang
-						</button>
+						</Button>
 					) : (
-						<button className='mt-auto text-xs font-medium border border-slate-200 bg-slate-200 px-4 py-2 rounded-[15px] self-end cursor-default  '>
-							Stock Habis
-						</button>
+						<Button disabled>Stock Habis</Button>
 					)}
 				</div>
 			</div>

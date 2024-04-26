@@ -15,6 +15,7 @@ const index = () => {
 		isSelectAll,
 		getCheckoutPrice,
 		getCheckoutTotalItem,
+		order,
 	} = useMarketStore();
 
 	let totalPrice = getCheckoutPrice();
@@ -74,6 +75,9 @@ const index = () => {
 			</div>
 			<hr className='mb-[15px]' />
 			<Link
+				onClick={() => {
+					order();
+				}}
 				to={'/payment'}
 				className='cursor-pointer mb-[10px] flex justify-center px-[40px]  mx-auto bg-red-400 active:bg-red-500  w-11/12 max-w-[350px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'
 			>

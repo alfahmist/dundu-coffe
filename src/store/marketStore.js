@@ -60,6 +60,7 @@ const useMarketStore = create((set, get) => ({
 		// },
 	],
 	orderHistory: [],
+	pendingPayment: [],
 	notification: false,
 	notificationText: '',
 	isSelectAll: false,
@@ -81,7 +82,6 @@ const useMarketStore = create((set, get) => ({
 	increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
 	removeAllBears: () => set({ bears: 0 }),
 	checkoutCart: () => {
-		console.log(get().checkout);
 		set({
 			checkout: get().getSelectedItem(),
 		});
@@ -90,6 +90,13 @@ const useMarketStore = create((set, get) => ({
 				carts: get().getUnSelectedItem(),
 			});
 		}, 1000);
+		console.log(get().checkout);
+	},
+	order: () => {
+		set((state) => ({
+			pendingPayment: [...state.checkout],
+		}));
+		console.log(get().pendingPayment);
 	},
 	// payment
 	addToOrderHistory: () => {
@@ -98,17 +105,22 @@ const useMarketStore = create((set, get) => ({
 				...get().orderHistory,
 				(state.orderHistory = {
 					id: isNaN(state.id) ? 1 : state.id + 1,
-					order: get().checkout,
+					order: get().pendingPayment,
 					date: new Date(),
 					totalPrice: get().getCheckoutPrice(),
 					totalItem: get().getCheckoutTotalItem(),
 				}),
 			],
 		}));
-
+		get().products.map((y) => {
+			get().pendingPayment.map((x) => {
+				if (x.id === y.id) y.stock = y.stock - x.quantity;
+			});
+		});
 		setTimeout(() => {
 			set({
 				checkout: [],
+				pendingPayment: [],
 			});
 		}, 2000);
 

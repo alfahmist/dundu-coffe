@@ -40,9 +40,10 @@ const index = () => {
 							</div>
 							<button
 								onClick={() => {
-									getSelectedItem() > 0 && confirm('delete yang dipilih ?')
+									getSelectedItem().length > 0 &&
+									confirm('delete yang dipilih ?')
 										? deleteSelectedProduct()
-										: null;
+										: console.log('belum ada product yang dipilih');
 								}}
 								className='text-red-500'
 							>

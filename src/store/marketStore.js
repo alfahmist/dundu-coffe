@@ -206,10 +206,11 @@ const useMarketStore = create((set, get) => ({
 		get().Notification(
 			`${
 				get().getSelectedItem() > 1
-					? `${get().getSelectedItem()} items deleted`
-					: `${get().getSelectedItem()} item deleted`
+					? `${get().getSelectedItem().length} items deleted`
+					: `${get().getSelectedItem().length} item deleted`
 			} `
 		);
+
 		set((state) => ({
 			carts: state.carts.filter((x) => x.isSelected === false),
 		}));

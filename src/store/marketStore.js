@@ -1,4 +1,3 @@
-import { produce } from 'immer';
 import { create } from 'zustand';
 import { products } from '../data/data';
 

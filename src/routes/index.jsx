@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import Home from '../pages/home';
 import Cart from '../pages/cart';
 import Layout from '../layout';

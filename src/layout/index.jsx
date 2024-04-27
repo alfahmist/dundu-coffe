@@ -5,20 +5,16 @@ import useMarketStore from '../store/marketStore';
 import { rupiah } from '../utils/toRupiah';
 import Modal from '../components/Modal';
 import Container from '../components/Container';
+import Notification from '../components/Notification';
 
 const index = () => {
-	const {
-		notificationText,
-		getTotalPrice,
-		checkoutCart,
-		modal,
-		notificationNum,
-	} = useMarketStore();
+	const { getTotalPrice, checkoutCart, modal, notificationNum } =
+		useMarketStore();
 	const path = useLocation().pathname;
 
 	return (
 		<>
-			<Modal orderHistory={modal}></Modal>
+			<Modal orderHistory={modal} />
 			{modal.length !== 0 && (
 				<div
 					className={`${'opacity-60 bg-black'} fixed h-screen w-screen font-display`}
@@ -26,20 +22,13 @@ const index = () => {
 			)}
 
 			{notificationNum.map((x, index) => {
-				return (
-					<div
-						key={index}
-						className={`fixed w-full h-[30px] cursor-default animate-[wiggle_.6s] top-[100px] font-display`}
-					>
-						<div className='text-center w-[430px] bg-black opacity-80 mx-auto rounded-md text-white text-sm h-full leading-[30px]'>
-							{notificationText}
-						</div>
-					</div>
-				);
+				return <Notification key={index} />;
 			})}
 
 			<div>
-				{['/', '/order-history'].includes(path) ? <Navigation /> : null}
+				{['/', '/order-history', '/cart'].includes(path) ? (
+					<Navigation />
+				) : null}
 				<Container>
 					<Outlet />
 				</Container>

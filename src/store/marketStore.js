@@ -101,7 +101,7 @@ const useMarketStore = create((set, get) => ({
 	notification: false,
 	notificationNum: [],
 	notificationText: '',
-	isSelectAll: false,
+	isSelectAll: true,
 	isLoading: false,
 	modal: [],
 	modalActive: false,
@@ -280,6 +280,12 @@ const useMarketStore = create((set, get) => ({
 			state.carts.map((x) => {
 				if (x.id === id) x.isSelected = !x.isSelected;
 			})
+		);
+		set((state) =>
+			state.carts.filter((x) => x.isSelected === true).length ===
+			state.carts.length
+				? { isSelectAll: true }
+				: { isSelectAll: false }
 		);
 	},
 	updateStock: () => {},

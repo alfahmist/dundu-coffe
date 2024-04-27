@@ -11,11 +11,11 @@ const CardContent = ({ product }) => {
 	return (
 		<>
 			<div className='p-[20px] flex flex-col gap-[10px] h-full'>
-				<CardRow>
+				<CardRow between>
 					<p className='text-sm font-medium uppercase'>{product.name}</p>
 					<p className='text-xs font-medium'>{rupiah(product.price)}</p>
 				</CardRow>
-				<CardRow stickBottom>
+				<CardRow between stickBottom>
 					<p className='text-[10px]'>stock : {product.stock}</p>
 					<p className='text-[10px] font-medium'>
 						{product.stock !== 0 ? 'Stock Tersedia' : 'Stock Tidak Tersedia'}

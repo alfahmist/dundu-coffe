@@ -4,6 +4,7 @@ import Navigation from './navigation';
 import useMarketStore from '../store/marketStore';
 import { rupiah } from '../utils/toRupiah';
 import Modal from '../components/Modal';
+import Container from '../components/Container';
 
 const index = () => {
 	const {
@@ -38,12 +39,10 @@ const index = () => {
 			})}
 
 			<div>
-				<div className='max-w-[830px] mx-auto pb-[100px] bg-white font-display'>
-					{['/', '/order-history'].includes(path) ? <Navigation /> : null}
-					<div className='px-[20px] py-[10px] border-2'>
-						<Outlet />
-					</div>
-				</div>
+				{['/', '/order-history'].includes(path) ? <Navigation /> : null}
+				<Container>
+					<Outlet />
+				</Container>
 				<div
 					className={`fixed w-full h-[50px] cursor-default transition-all duration-500 bottom-[20px]`}
 				>

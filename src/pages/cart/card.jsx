@@ -16,7 +16,7 @@ const card = ({ product }) => {
 	return (
 		<>
 			<div
-				className={`flex flex-row h-[150px] w-full flex-wrap overflow-hidden mb-[50px] pb-[20px]  gap-2 border-b-2 `}
+				className={`flex flex-row  w-full flex-wrap overflow-hidden mb-[50px] pb-[20px] gap-2 border-b-2 `}
 			>
 				<input
 					type='checkbox'

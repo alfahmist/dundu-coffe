@@ -20,7 +20,7 @@ const Modal = ({ orderHistory }) => {
 
 		console.log(orderHistory);
 		return (
-			<div className='fixed border overflow-hidden w-[800px] h-[400px] mx-auto left-0 right-0 top-0 bottom-0 my-auto rounded-xl bg-white z-10'>
+			<div className='fixed border overflow-hidden w-[300px] sm:w-[800px] h-[600px] mx-auto left-0 right-0 top-0 bottom-0 my-auto rounded-xl bg-white z-10'>
 				<div className='flex justify-between py-[10px] px-[15px]'>
 					<h1>Detail Transaksi</h1>
 					<button
@@ -32,14 +32,14 @@ const Modal = ({ orderHistory }) => {
 					</button>
 				</div>
 				<hr />
-				<div className='py-[10px] px-[20px] h-[500px] '>
-					<div className='flex flex-row justify-between gap-20 h-[300px] pr-[20px] overflow-y-scroll  '>
+				<div className='py-[10px] px-[20px] h-[500px]'>
+					<div className='flex flex-col sm:justify-between gap-20 h-[600px] pr-[20px] overflow-y-scroll '>
 						<div className='flex flex-col items-start flex-1 gap-5'>
 							{orderHistory.order.map((product, index) => {
 								return <Card key={index} product={product} />;
 							})}
 						</div>
-						<div className='mb-[15px] flex-1'>
+						<div className='mb-[200px] flex-1'>
 							<p className='font-bold'>
 								{orderHistory.totalItem > 0
 									? `${orderHistory.totalItem} items`

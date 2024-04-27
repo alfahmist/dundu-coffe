@@ -20,7 +20,7 @@ const index = () => {
 			<Modal orderHistory={modal}></Modal>
 			{modal.length !== 0 && (
 				<div
-					className={`${'opacity-60 bg-black'} fixed h-screen w-screen`}
+					className={`${'opacity-60 bg-black'} fixed h-screen w-screen font-display`}
 				></div>
 			)}
 
@@ -28,7 +28,7 @@ const index = () => {
 				return (
 					<div
 						key={index}
-						className={`fixed w-full h-[30px] cursor-default animate-[wiggle_.6s] top-[100px]`}
+						className={`fixed w-full h-[30px] cursor-default animate-[wiggle_.6s] top-[100px] font-display`}
 					>
 						<div className='text-center w-[430px] bg-black opacity-80 mx-auto rounded-md text-white text-sm h-full leading-[30px]'>
 							{notificationText}
@@ -38,7 +38,7 @@ const index = () => {
 			})}
 
 			<div>
-				<div className='max-w-[830px] mx-auto pb-[100px] bg-white'>
+				<div className='max-w-[830px] mx-auto pb-[100px] bg-white font-display'>
 					{['/', '/order-history'].includes(path) ? <Navigation /> : null}
 					<div className='px-[20px] py-[10px] border-2'>
 						<Outlet />

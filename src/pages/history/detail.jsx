@@ -24,85 +24,53 @@ const detail = ({ orderHistory, index }) => {
 	let servicePrice = (orderHistory.totalPrice * 6) / 100;
 	let totalPriceAfterService = orderHistory.totalPrice + servicePrice;
 
-	let newDate = orderHistory.date.toLocaleDateString('default', {
-		weekday: 'long',
+	let newDate = orderHistory.date.toLocaleDateString('id', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',
 	});
 	let newTime = orderHistory.date.toLocaleTimeString('en-US');
-	const [active, setActive] = useState(false);
 	console.log(newDate);
 	console.log(newTime);
 	return (
 		<>
-			<button
-				className='mb-[15px] text-left'
-				onClick={() => {
-					setActive(!active);
-				}}
-			>
-				see detail order - {index}
-			</button>
+			<div className='border-2 mb-[20px] px-[15px] pb-[20px] pt-[10px] rounded-lg'>
+				<Flex className={'mb-[10px]'}>
+					<p>
+						{newDate} | <span className='font-light'> order ke - {index}</span>
+					</p>
+				</Flex>
 
-			<div className='overflow-y-auto'>
-				<hr className='mb-[15px]' />
-				<div className='flex flex-row justify-between gap-20'>
+				<div className='flex flex-col sm:flex-row items-center sm:items-start sm:justify-between gap-4 '>
 					<div className='flex flex-col items-start flex-1'>
 						{orderHistory.order.map((product, index) => {
-							if (index === 0) console.log('AWdawdwa');
-							if (index === 0) return <Card key={index} product={product} />;
+							console.log(index + 1);
+							if (index === 0)
+								return (
+									<Card
+										key={index}
+										product={product}
+										otherProduct={orderHistory.order.length}
+										orderHistory={orderHistory}
+									/>
+								);
 						})}
 					</div>
-					<div className='mb-[15px] flex-1'>
-						<p className='font-bold'>
-							{orderHistory.totalItem > 0
-								? `${orderHistory.totalItem} items`
-								: `${orderHistory.totalItem} item`}
+					<Flex className={'flex-col mr-[20px] justify-center items-center'}>
+						<p>Total Belanja</p>
+						<p className='font-medium mb-[10px]'>
+							{rupiah(totalPriceAfterService)}
 						</p>
-						<Flex>
-							<p className='font-light'>Total Harga Produk</p>
-							<p>{rupiah(totalPrice)}</p>
-						</Flex>
-						<Flex>
-							<p className='font-light'>Subtotal</p>
-							<p>{rupiah(totalPrice)}</p>
-						</Flex>
-						<Flex>
-							<p className='font-light'>Service (6%)</p>
-							<p>{rupiah(servicePrice)}</p>
-						</Flex>
-						<Flex>
-							<p className='font-medium'>Total</p>
-							<p>{rupiah(totalPriceAfterService)}</p>
-						</Flex>
-						<Flex className={'mt-[20px]'}>
-							<p className='font-medium'>Tunai</p>
-							<p>{rupiah(orderHistory.tunai)}</p>
-						</Flex>
-						<Flex>
-							<p className='font-medium'>Kembalian</p>
-							<p>{rupiah(orderHistory.kembalian)}</p>
-						</Flex>
-						<Flex className='mt-[20px]'>
-							<p className='font-medium'>Tanggal Pembelian</p>
-							<p>{newDate}</p>
-						</Flex>
-						<Flex className='mt-[5px]'>
-							<p className='font-medium'>Waktu Pembelian</p>
-							<p>{newTime}</p>
-						</Flex>
 						<button
 							onClick={() => {
 								sendToModal(orderHistory);
 							}}
-							className='mt-[5px] font-medium'
+							className='font-medium text-red-500 mt-auto '
 						>
 							Lihat Detail Transaksi
 						</button>
-					</div>
+					</Flex>
 				</div>
-				<hr className='mb-[15px]' />
 			</div>
 		</>
 	);

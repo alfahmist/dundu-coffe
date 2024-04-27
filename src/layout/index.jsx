@@ -6,8 +6,13 @@ import { rupiah } from '../utils/toRupiah';
 import Modal from '../components/Modal';
 
 const index = () => {
-	const { notification, notificationText, getTotalPrice, checkoutCart, modal } =
-		useMarketStore();
+	const {
+		notificationText,
+		getTotalPrice,
+		checkoutCart,
+		modal,
+		notificationNum,
+	} = useMarketStore();
 	const path = useLocation().pathname;
 
 	return (
@@ -18,15 +23,20 @@ const index = () => {
 					className={`${'opacity-60 bg-black'} fixed h-screen w-screen`}
 				></div>
 			)}
-			<div
-				className={`fixed w-full h-[30px] cursor-default transition-all duration-500  ${
-					notification ? 'top-[100px] opacity-100' : 'top-[-100px] opacity-0'
-				}`}
-			>
-				<div className='text-center w-[430px] bg-black opacity-80 mx-auto rounded-md text-white text-sm h-full leading-[30px]'>
-					{notificationText}
-				</div>
-			</div>
+
+			{notificationNum.map((x, index) => {
+				return (
+					<div
+						key={index}
+						className={`fixed w-full h-[30px] cursor-default animate-[wiggle_.6s] top-[100px]`}
+					>
+						<div className='text-center w-[430px] bg-black opacity-80 mx-auto rounded-md text-white text-sm h-full leading-[30px]'>
+							{notificationText}
+						</div>
+					</div>
+				);
+			})}
+
 			<div>
 				<div className='max-w-[830px] mx-auto pb-[100px] bg-white'>
 					{['/', '/order-history'].includes(path) ? <Navigation /> : null}

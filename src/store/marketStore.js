@@ -100,6 +100,7 @@ const useMarketStore = create((set, get) => ({
 	],
 	pendingPayment: [],
 	notification: false,
+	notificationNum: [],
 	notificationText: '',
 	isSelectAll: false,
 	isLoading: false,
@@ -109,15 +110,25 @@ const useMarketStore = create((set, get) => ({
 		set({ isLoading: loading });
 	},
 	Notification: (text) => {
-		set(() => ({
+		set((state) => ({
 			notification: true,
+			notificationNum: [...state.notificationNum, true],
 			notificationText: text,
 		}));
+		// jeda klik addToCart
 		setTimeout(() => {
 			set(() => ({
 				notification: false,
 			}));
-		}, 2000);
+			console.log(get().notificationNum);
+		}, 500);
+		// Waktu notifikasinya
+		setTimeout(() => {
+			set((state) => ({
+				notificationNum: state.notificationNum.slice(1),
+			}));
+			console.log(get().notificationNum);
+		}, 1500);
 	},
 	increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
 	removeAllBears: () => set({ bears: 0 }),
@@ -177,7 +188,7 @@ const useMarketStore = create((set, get) => ({
 	addToCart: (obj) => {
 		setTimeout(() => {
 			console.log(get().carts);
-		}, 2000);
+		}, 1000);
 		// jika id nya ad
 		if (get().carts.some((x) => x.id === obj.id)) {
 			// jika id nya ada maka tambah quantity

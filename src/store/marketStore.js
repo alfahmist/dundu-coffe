@@ -199,9 +199,7 @@ const useMarketStore = create((set, get) => ({
 							x.quantity += 1;
 							get().Notification('1 item added to cart');
 						} else {
-							get().Notification(
-								'jumlah barang yang kamu pesan melebihi sudah melebihi stock'
-							);
+							get().Notification('tidak bisa menambahkan item lebih banyak');
 						}
 					}
 					return x;

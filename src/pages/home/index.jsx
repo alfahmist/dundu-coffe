@@ -1,5 +1,5 @@
 import useMarketStore from '../../store/marketStore';
-import Card from './card';
+import Card from './Card';
 
 const index = () => {
 	const { products } = useMarketStore();

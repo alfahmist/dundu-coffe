@@ -755,10 +755,6 @@ video {
   width: 45%;
 }
 
-.w-\[730px\] {
-  width: 730px;
-}
-
 .w-\[80px\] {
   width: 80px;
 }
@@ -785,16 +781,6 @@ video {
 
 .flex-1 {
   flex: 1 1 0%;
-}
-
-@keyframes wiggle {
-  0% {
-    top: 0;
-  }
-
-  100% {
-    top: 100px;
-  }
 }
 
 .animate-\[wiggle_\.6s\] {
@@ -964,11 +950,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-zinc-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(161 161 170 / var(--tw-bg-opacity));
 }
 
 .p-\[10px\] {

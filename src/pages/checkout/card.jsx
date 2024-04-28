@@ -14,9 +14,12 @@ const card = ({ product }) => {
 				/>
 				<div className='flex flex-col ml-4 w-full gap-2'>
 					<p className='font-medium'>{product.name}</p>
-					<div className='flex justify-between'>
-						<p className='font-medium text-sm'>{rupiah(harga)}</p>
-						<p className='font-medium text-sm'>x {product.quantity}</p>
+					<div className='flex'>
+						<p className='font-medium text-sm'>{product.quantity}x&nbsp;</p>
+						<p className='font-medium text-sm'>
+							@{rupiah(product.price).slice(2)}
+						</p>
+						<p className='font-medium text-sm ml-auto'>{rupiah(harga)}</p>
 					</div>
 				</div>
 			</div>

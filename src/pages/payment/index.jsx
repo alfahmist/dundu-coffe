@@ -101,12 +101,12 @@ const index = () => {
 						sisa > 0 ? alert('kembalian : ' + rupiah(sisa)) : null;
 						sisa < 0 ? alert('kurang bayar') : null;
 						if (sisa === 0 || sisa > 0) {
-							setIsLoading(true);
+							// setIsLoading(true);
 							addToOrderHistory(bayar, sisa);
 							setTimeout(() => {
 								alert('Pembayaran Berhasil');
 								navigate('/');
-								setIsLoading(false);
+								// setIsLoading(false);
 							}, 1000);
 						}
 					}}

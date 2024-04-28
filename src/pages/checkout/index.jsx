@@ -29,15 +29,28 @@ const index = () => {
 						''
 					)}
 				</div>
-				<Link
+				<button
 					onClick={() => {
+						// menampilkan popup bayar
 						order();
+						let bayar = prompt('Input Bayar');
+						let sisa = bayar - totalPriceAfterService;
+						sisa > 0 ? alert('kembalian : ' + rupiah(sisa)) : null;
+						sisa < 0 ? alert('kurang bayar') : null;
+						if (sisa === 0 || sisa > 0) {
+							setIsLoading(true);
+							addToOrderHistory(bayar, sisa);
+							setTimeout(() => {
+								alert('Pembayaran Berhasil');
+								navigate('/');
+								setIsLoading(false);
+							}, 1000);
+						}
 					}}
-					to={'/payment'}
 					className='cursor-pointer mb-[10px] flex justify-center px-[40px]  mx-auto bg-red-500 active:bg-red-600  w-11/12 max-w-[350px]   rounded-3xl text-white text-md h-full leading-[50px] font-bold shadow-slate-500 shadow-md'
 				>
-					<span>Order</span>
-				</Link>
+					<span>Bayar</span>
+				</button>
 			</Container>
 		</>
 	);

@@ -303,7 +303,9 @@ const useMarketStore = create((set, get) => ({
 	getSelectedItem: () => get().carts.filter((x) => x.isSelected === true),
 	getUnSelectedItem: () => get().carts.filter((x) => x.isSelected === false),
 	getTotalItem: () =>
-		get().carts.reduce((acc, current) => (acc += current.quantity), 0),
+		get()
+			.carts.filter((x) => x.isSelected === true)
+			.reduce((acc, current) => (acc += current.quantity), 0),
 	getTotalPrice: () =>
 		get()
 			.carts.filter((x) => x.isSelected === true)

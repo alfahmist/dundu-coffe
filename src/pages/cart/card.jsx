@@ -6,7 +6,7 @@ import { rupiah } from '../../utils/toRupiah';
 const card = ({ product }) => {
 	const { setSelected } = useMarketStore();
 
-	let harga = product.price * product.quantity;
+	let harga = product.price;
 	return (
 		<>
 			<div className='my-[25px] flex flex-col sm:flex-row gap-[20px]'>

@@ -1,4 +1,4 @@
-const CardRow = ({ children, stickBottom }) => {
+const Flex = ({ children, stickBottom }) => {
 	return (
 		<div
 			className={`flex flex-col justify-between sm:flex-row ${
@@ -10,4 +10,4 @@ const CardRow = ({ children, stickBottom }) => {
 	);
 };
 
-export default CardRow;
+export default Flex;

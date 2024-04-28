@@ -1,6 +1,6 @@
 import Container from '../../components/Container';
 import useMarketStore from '../../store/marketStore';
-import Card from './Card';
+import Product from './Product';
 
 const index = () => {
 	const { products } = useMarketStore();
@@ -9,7 +9,7 @@ const index = () => {
 			<Container>
 				<div className='flex flex-row flex-wrap justify-center gap-4'>
 					{products.map((product, index) => {
-						return <Card column key={index} product={product} />;
+						return <Product column key={index} product={product} />;
 					})}
 				</div>
 			</Container>

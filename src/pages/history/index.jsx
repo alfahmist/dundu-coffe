@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import useMarketStore from '../../store/marketStore';
-import Card from './card';
-import Flex from './flex';
-import Detail from './detail';
+import Card from './Card';
+import Flex from './Flex';
+import Detail from './Detail';
 import { useState } from 'react';
 import Container from '../../components/Container';
 

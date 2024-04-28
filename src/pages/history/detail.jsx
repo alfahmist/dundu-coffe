@@ -1,6 +1,6 @@
 import useMarketStore from '../../store/marketStore';
-import Flex from './flex';
-import Card from './card';
+import Flex from './Flex';
+import Card from './Card';
 import { useState } from 'react';
 import { rupiah } from '../../utils/toRupiah';
 import Modal from '../../components/Modal';

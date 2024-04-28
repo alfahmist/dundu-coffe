@@ -1,9 +1,9 @@
 import useMarketStore from '../../store/marketStore';
 import { rupiah } from '../../utils/toRupiah';
 import Button from '../../components/Button';
-import CardRow from './CardRow';
+import Flex from './Flex';
 
-const CardContent = ({ product }) => {
+const ProductContent = ({ product }) => {
 	const { addToCart, notification } = useMarketStore();
 	const btnKeranjang = () => {
 		notification ? null : addToCart(product);
@@ -11,16 +11,16 @@ const CardContent = ({ product }) => {
 	return (
 		<>
 			<div className='p-[20px] flex flex-col gap-[10px] h-full'>
-				<CardRow between>
+				<Flex between>
 					<p className='text-sm font-medium uppercase'>{product.name}</p>
 					<p className='text-xs font-medium'>{rupiah(product.price)}</p>
-				</CardRow>
-				<CardRow between stickBottom>
+				</Flex>
+				<Flex between stickBottom>
 					<p className='text-[10px]'>stock : {product.stock}</p>
 					<p className='text-[10px] font-medium'>
 						{product.stock !== 0 ? 'Stock Tersedia' : 'Stock Tidak Tersedia'}
 					</p>
-				</CardRow>
+				</Flex>
 
 				{product.stock !== 0 ? (
 					<Button active onClick={btnKeranjang}>
@@ -34,4 +34,4 @@ const CardContent = ({ product }) => {
 	);
 };
 
-export default CardContent;
+export default ProductContent;

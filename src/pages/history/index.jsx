@@ -4,6 +4,7 @@ import Card from './card';
 import Flex from './flex';
 import Detail from './detail';
 import { useState } from 'react';
+import Container from '../../components/Container';
 
 const index = () => {
 	const {
@@ -32,23 +33,25 @@ const index = () => {
 	const [active, setActive] = useState();
 	return (
 		<>
-			<div>
-				<div className='mb-[15px] flex justify-between'>
-					<div className=''>Dundu's Coffe</div>
+			<Container>
+				<div>
+					<div className='mb-[15px] flex justify-between'>
+						<div className=''>Dundu's Coffe</div>
+					</div>
+					<hr className='mb-[15px]' />
+					<div className='flex flex-col '>
+						{orderHistory.map((orderHistory, index) => {
+							return (
+								<Detail
+									key={index}
+									orderHistory={orderHistory}
+									index={index + 1}
+								/>
+							);
+						})}
+					</div>
 				</div>
-				<hr className='mb-[15px]' />
-				<div className='flex flex-col '>
-					{orderHistory.map((orderHistory, index) => {
-						return (
-							<Detail
-								key={index}
-								orderHistory={orderHistory}
-								index={index + 1}
-							/>
-						);
-					})}
-				</div>
-			</div>
+			</Container>
 		</>
 	);
 };

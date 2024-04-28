@@ -40,6 +40,8 @@ const index = () => {
 					) : (
 						''
 					)}
+					<hr className='mb-[15px]' />
+
 					<CheckoutBody />
 
 					<hr className='mb-[15px]' />

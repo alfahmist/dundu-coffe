@@ -135,23 +135,19 @@ const useMarketStore = create((set, get) => ({
 		set({
 			checkout: get().getSelectedItem(),
 		});
-		setTimeout(() => {
-			set({
-				carts: get().getUnSelectedItem(),
-			});
-		}, 1000);
+
 		console.log(get().checkout);
 	},
 	order: () => {
 		set({
 			pendingPayment: get().checkout,
 		});
-		setTimeout(() => {
-			set({
-				checkout: [],
-			});
-		}, 1000);
-
+		// set({
+		// 	carts: get().getUnSelectedItem(),
+		// });
+		// set({
+		// 	checkout: [],
+		// });
 		console.log(get().pendingPayment);
 	},
 	sendToModal: (obj) => {
@@ -162,6 +158,12 @@ const useMarketStore = create((set, get) => ({
 	},
 	// payment
 	addToOrderHistory: (bayar, kembalian) => {
+		set({
+			carts: get().getUnSelectedItem(),
+		});
+		set({
+			checkout: [],
+		});
 		set((state) => ({
 			orderHistory: [
 				...get().orderHistory,
@@ -234,11 +236,11 @@ const useMarketStore = create((set, get) => ({
 		set((state) =>
 			state.carts.map((x) => {
 				if (x.id === id) {
-					if (x.quantity < x.stock) {
+					if (x.quantity < x.stock - 1) {
 						if (x.quantity >= 1) x.quantity = x.quantity + 1;
 						if (x.quantity === 0) x.quantity = 1;
 					} else {
-						get().Notification('Maaf Stock Sisa :' + x.stock);
+						get().Notification('Maaf Stock Sisa : ' + x.stock);
 						x.quantity = x.stock;
 					}
 				}

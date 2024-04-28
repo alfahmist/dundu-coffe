@@ -6,7 +6,7 @@ import Container from '../../components/Container';
 import CheckoutHeader from './CheckoutHeader';
 import CheckoutBody from './CheckoutBody';
 const index = () => {
-	const { checkout, getCheckoutPrice, order } = useMarketStore();
+	const { checkout, order } = useMarketStore();
 
 	return (
 		<>

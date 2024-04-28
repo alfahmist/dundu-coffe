@@ -1,15 +1,6 @@
 import useMarketStore from '../../store/marketStore';
 import { rupiah } from '../../utils/toRupiah';
 const card = ({ product }) => {
-	const {
-		addToCart,
-		setNotification,
-		notification,
-		updateQuantity,
-		deleteProduct,
-		setSelected,
-	} = useMarketStore();
-
 	let harga = product.price * product.quantity;
 	return (
 		<>

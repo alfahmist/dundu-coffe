@@ -31,7 +31,7 @@ const CheckoutBody = () => {
 				</Flex>
 				<Flex className='mt-[20px]'>
 					<p className='font-medium'>Total</p>
-					<p>{rupiah(totalPriceAfterService)}</p>
+					<p className='font-medium'>{rupiah(totalPriceAfterService)}</p>
 				</Flex>
 			</div>
 		</>

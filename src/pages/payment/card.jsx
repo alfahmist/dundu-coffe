@@ -23,10 +23,13 @@ const card = ({ product }) => {
 				/>
 				<div className='flex flex-col ml-4 w-full gap-2'>
 					<p className='font-medium'>{product.name}</p>
-					<div className='flex justify-between'>
-						<p className='font-medium text-sm'>{rupiah(product.price)}</p>
-						<p className='font-medium text-sm'>x {product.quantity}</p>
+					<div className='flex '>
+						<p className='text-sm'>{product.quantity}x&nbsp;</p>
+						<p className='text-sm'>{rupiah(product.price)}</p>
 					</div>
+					<p className='font-medium text-sm'>
+						{rupiah(product.quantity * product.price)}
+					</p>
 				</div>
 			</div>
 		</>

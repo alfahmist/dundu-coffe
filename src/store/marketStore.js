@@ -120,7 +120,7 @@ const useMarketStore = create((set, get) => ({
 				notification: false,
 			}));
 			console.log(get().notificationNum);
-		}, 500);
+		}, 400);
 		// Waktu notifikasinya
 		setTimeout(() => {
 			set((state) => ({
@@ -143,9 +143,15 @@ const useMarketStore = create((set, get) => ({
 		console.log(get().checkout);
 	},
 	order: () => {
-		set((state) => ({
-			pendingPayment: [...state.checkout],
-		}));
+		set({
+			pendingPayment: get().checkout,
+		});
+		setTimeout(() => {
+			set({
+				checkout: [],
+			});
+		}, 1000);
+
 		console.log(get().pendingPayment);
 	},
 	sendToModal: (obj) => {
@@ -304,6 +310,11 @@ const useMarketStore = create((set, get) => ({
 			.reduce((acc, current) => (acc += current.quantity * current.price), 0),
 	getCheckoutPrice: () =>
 		get().checkout.reduce(
+			(acc, current) => (acc += current.quantity * current.price),
+			0
+		),
+	getOrderPrice: () =>
+		get().pendingPayment.reduce(
 			(acc, current) => (acc += current.quantity * current.price),
 			0
 		),

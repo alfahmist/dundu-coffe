@@ -1,4 +1,4 @@
-const flex = ({ children, className }) => {
+const Flex = ({ children, className }) => {
 	return (
 		<>
 			<div className={`flex justify-between ${className}`}>{children}</div>
@@ -6,4 +6,4 @@ const flex = ({ children, className }) => {
 	);
 };
 
-export default flex;
+export default Flex;

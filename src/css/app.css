@@ -783,6 +783,16 @@ video {
   flex: 1 1 0%;
 }
 
+@keyframes wiggle {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 100px;
+  }
+}
+
 .animate-\[wiggle_\.6s\] {
   animation: wiggle .6s;
 }

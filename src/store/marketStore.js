@@ -158,18 +158,12 @@ const useMarketStore = create((set, get) => ({
 	},
 	// payment
 	addToOrderHistory: (bayar, kembalian) => {
-		set({
-			carts: get().getUnSelectedItem(),
-		});
-		set({
-			checkout: [],
-		});
 		set((state) => ({
 			orderHistory: [
 				...get().orderHistory,
 				(state.orderHistory = {
 					id: isNaN(state.id) ? 1 : state.id + 1,
-					order: get().pendingPayment,
+					order: get().checkout,
 					date: new Date(),
 					totalPrice: get().getCheckoutPrice(),
 					totalItem: get().getCheckoutTotalItem(),
@@ -179,18 +173,22 @@ const useMarketStore = create((set, get) => ({
 			],
 		}));
 		get().products.map((y) => {
-			get().pendingPayment.map((x) => {
+			get().checkout.map((x) => {
 				if (x.id === y.id) y.stock = y.stock - x.quantity;
 			});
 		});
 		setTimeout(() => {
 			set({
 				checkout: [],
-				pendingPayment: [],
 			});
-		}, 2000);
+			set({
+				carts: get().getUnSelectedItem(),
+			});
+			console.log(get().checkout);
+		}, 1500);
 
 		console.log(get().orderHistory);
+		console.log(get().checkout);
 	},
 	addToCart: (obj) => {
 		setTimeout(() => {

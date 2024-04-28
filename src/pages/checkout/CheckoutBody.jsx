@@ -30,12 +30,8 @@ const CheckoutBody = () => {
 					<p>{rupiah(servicePrice)}</p>
 				</Flex>
 				<Flex className='mt-[20px]'>
-					<p className='font-medium'>Total Tagihan : </p>
-					<p className='font-medium'>{rupiah(totalPriceAfterService)}</p>
-				</Flex>
-				<hr className='mt-[20px]' />
-				<Flex className='mt-[20px]'>
-					<p className='font-medium'>Rincian Belanja</p>
+					<p className='font-bold'>Total Tagihan : </p>
+					<p className='font-bold'>{rupiah(totalPriceAfterService)}</p>
 				</Flex>
 			</div>
 		</>

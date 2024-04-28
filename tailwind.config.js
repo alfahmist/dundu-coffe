@@ -9,6 +9,12 @@ export default {
 			animation: {
 				wiggle: 'wiggle .6s',
 			},
+			keyframes: {
+				wiggle: {
+					'0%': { top: '0' },
+					'100%': { top: '100px' },
+				},
+			},
 		},
 	},
 	plugins: [],

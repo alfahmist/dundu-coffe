@@ -1,5 +1,3 @@
-import CardColumn from '../../components/CardColumn';
-import CardRow from '../../components/CardRow';
 import useMarketStore from '../../store/marketStore';
 import ButtonProduct from './ButtonProduct';
 import { rupiah } from '../../utils/toRupiah';

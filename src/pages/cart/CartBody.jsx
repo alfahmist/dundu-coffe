@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import useMarketStore from '../../store/marketStore';
-import Card from './card';
-import CardColumn from '../../components/CardColumn';
+import Card from './Card';
 
 const CartBody = () => {
 	const {

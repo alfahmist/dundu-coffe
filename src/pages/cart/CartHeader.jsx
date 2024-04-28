@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import CardRow from '../../components/CardRow';
 
 const CartHeader = () => {
 	return (

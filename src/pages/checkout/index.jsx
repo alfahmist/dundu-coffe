@@ -1,6 +1,6 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useMarketStore from '../../store/marketStore';
-import Card from './card';
+import Card from './Card';
 import { rupiah } from '../../utils/toRupiah';
 import Container from '../../components/Container';
 import CheckoutHeader from './CheckoutHeader';

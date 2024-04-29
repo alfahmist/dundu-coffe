@@ -1,10 +1,8 @@
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
-import Navigation from './navigation';
+import Navigation from './Navigation';
 import useMarketStore from '../store/marketStore';
-import { rupiah } from '../utils/toRupiah';
 import Modal from '../components/Modal';
-import Container from '../components/Container';
 import Notification from '../components/Notification';
 
 const index = () => {

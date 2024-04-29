@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import cart from '../assets/cart.svg';
 import useMarketStore from '../store/marketStore';
 
-const navigation = () => {
+const Navigation = () => {
 	const { getTotalItem } = useMarketStore();
 	return (
 		<>
@@ -23,4 +23,4 @@ const navigation = () => {
 	);
 };
 
-export default navigation;
+export default Navigation;

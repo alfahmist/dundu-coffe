@@ -1,7 +1,7 @@
 import bin from '../../assets/bin.svg';
 import useMarketStore from '../../store/marketStore';
 
-const ProductEditor = ({ product }) => {
+const ButtonCollection = ({ product }) => {
 	const { addQuantity, substractQuantity, deleteProduct } = useMarketStore();
 	const btnDelete = () => {
 		confirm('delete') ? deleteProduct(product.id) : null;
@@ -50,4 +50,4 @@ const ProductEditor = ({ product }) => {
 	);
 };
 
-export default ProductEditor;
+export default ButtonCollection;

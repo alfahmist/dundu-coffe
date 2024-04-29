@@ -1,5 +1,5 @@
 import useMarketStore from '../../store/marketStore';
-import ButtonProduct from './ButtonProduct';
+import ButtonCollection from './ButtonCollection';
 import { rupiah } from '../../utils/toRupiah';
 const card = ({ product }) => {
 	const { setSelected } = useMarketStore();
@@ -28,7 +28,7 @@ const card = ({ product }) => {
 						<p className='text-xs ml-auto'>stock sisa : {product.stock}</p>
 					</div>
 				</div>
-				<ButtonProduct product={product} />
+				<ButtonCollection product={product} />
 			</div>
 			<hr />
 		</>

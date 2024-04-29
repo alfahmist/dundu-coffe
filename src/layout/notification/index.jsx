@@ -1,6 +1,6 @@
-import useMarketStore from '../store/marketStore';
+import useMarketStore from '../../store/marketStore';
 
-const Notification = () => {
+const index = () => {
 	const { notificationText } = useMarketStore();
 	return (
 		<div
@@ -13,4 +13,4 @@ const Notification = () => {
 	);
 };
 
-export default Notification;
+export default index;

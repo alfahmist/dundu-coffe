@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import cart from '../assets/cart.svg';
-import useMarketStore from '../store/marketStore';
+import cart from '../../assets/cart.svg';
+import useMarketStore from '../../store/marketStore';
 
-const Navigation = () => {
+const index = () => {
 	const { getTotalItem } = useMarketStore();
 	return (
 		<>
@@ -23,4 +23,4 @@ const Navigation = () => {
 	);
 };
 
-export default Navigation;
+export default index;

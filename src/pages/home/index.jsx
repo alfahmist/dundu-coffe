@@ -9,7 +9,7 @@ const index = () => {
 			<Container>
 				<div className='flex flex-row flex-wrap justify-center gap-4'>
 					{products.map((product, index) => {
-						return <Product column key={index} product={product} />;
+						return <Product key={index} product={product} />;
 					})}
 				</div>
 			</Container>

@@ -1,13 +1,12 @@
 import { Outlet, useLocation } from 'react-router-dom';
 
-import Navigation from './Navigation';
+import Navigation from './navigation';
 import useMarketStore from '../store/marketStore';
-import Modal from '../components/Modal';
-import Notification from '../components/Notification';
+import Modal from './modal';
+import Notification from './notification';
 
 const index = () => {
-	const { getTotalPrice, checkoutCart, modal, notificationNum } =
-		useMarketStore();
+	const { modal, notificationNum } = useMarketStore();
 	const path = useLocation().pathname;
 
 	return (

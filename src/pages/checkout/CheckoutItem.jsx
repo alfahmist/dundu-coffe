@@ -1,5 +1,5 @@
 import { rupiah } from '../../utils/toRupiah';
-const card = ({ product }) => {
+const CheckoutItem = ({ product }) => {
 	let harga = product.price * product.quantity;
 	return (
 		<>
@@ -26,4 +26,4 @@ const card = ({ product }) => {
 	);
 };
 
-export default card;
+export default CheckoutItem;

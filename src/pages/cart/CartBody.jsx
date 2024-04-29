@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import useMarketStore from '../../store/marketStore';
-import Card from './Card';
+import CartItem from './CartItem';
 
 const CartBody = () => {
 	const {
@@ -42,7 +42,7 @@ const CartBody = () => {
 					</div>
 					<hr className='mb-[40px]' />
 					{carts.map((product, index) => {
-						return <Card key={index} product={product} />;
+						return <CartItem key={index} product={product} />;
 					})}
 				</>
 			) : (

@@ -1,18 +1,8 @@
 import useMarketStore from '../../store/marketStore';
-import bin from '../../assets/bin.svg';
 import { rupiah } from '../../utils/toRupiah';
-const card = ({ product, otherProduct, orderHistory }) => {
-	const {
-		addToCart,
-		setNotification,
-		notification,
-		updateQuantity,
-		deleteProduct,
-		setSelected,
-		sendToModal,
-	} = useMarketStore();
+const ProductItem = ({ product, otherProduct, orderHistory }) => {
+	const { sendToModal } = useMarketStore();
 
-	let harga = product.price;
 	return (
 		<>
 			<div className={`flex flex-row`}>
@@ -25,7 +15,7 @@ const card = ({ product, otherProduct, orderHistory }) => {
 					<p className='font-medium'>{product.name}</p>
 					<div className='flex gap-1'>
 						<p className='font-normal text-sm'>{product.quantity} x</p>
-						<p className='font-normal text-sm'>{rupiah(harga)}</p>
+						<p className='font-normal text-sm'>{rupiah(product.price)}</p>
 					</div>
 					<button
 						className='text-sm font-light self-start'
@@ -33,7 +23,9 @@ const card = ({ product, otherProduct, orderHistory }) => {
 							sendToModal(orderHistory);
 						}}
 					>
-						+{otherProduct - 1} produk lainnya
+						{otherProduct - 1 === 0
+							? ''
+							: `+${otherProduct - 1} produk lainnya`}
 					</button>
 				</div>
 			</div>
@@ -41,4 +33,4 @@ const card = ({ product, otherProduct, orderHistory }) => {
 	);
 };
 
-export default card;
+export default ProductItem;

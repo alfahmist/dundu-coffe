@@ -12,26 +12,7 @@ const CartFooter = () => {
 		getSelectedItem,
 	} = useMarketStore();
 	console.log(getSelectedItem());
-	const obj = [
-		{
-			id: 1,
-			image: 'affogato.jpg',
-			isSelected: true,
-			name: 'affogato',
-			price: 25000,
-			quantity: 1,
-			stock: 2,
-		},
-		{
-			id: 1,
-			image: 'affogato.jpg',
-			isSelected: true,
-			name: 'affogato',
-			price: 25000,
-			quantity: 1,
-			stock: 2,
-		},
-	];
+
 	return (
 		<>
 			<div

@@ -1,17 +1,6 @@
-import useMarketStore from '../store/marketStore';
-import { rupiah } from '../utils/toRupiah';
-const card = ({ product }) => {
-	const {
-		addToCart,
-		setNotification,
-		notification,
-		updateQuantity,
-		deleteProduct,
-		setSelected,
-	} = useMarketStore();
+import { rupiah } from '../../utils/toRupiah';
 
-	let harga = product.price;
-	let totalHarga = product.price * product.quantity;
+const Detail = ({ product }) => {
 	return (
 		<>
 			<div
@@ -26,16 +15,16 @@ const card = ({ product }) => {
 					<p className='font-medium'>{product.name}</p>
 					<div className='flex gap-1 justify-center items-center'>
 						<p className='font-light text-sm'>{product.quantity} x</p>
-						<p className='font-light text-sm'>{rupiah(harga)}</p>
+						<p className='font-light text-sm'>{rupiah(product.price)}</p>
 					</div>
 				</div>
 				<div className='flex flex-col sm:gap-2 w-full sm:w-[150px] justify-center items-center'>
 					<p className='font-normal'>Total Harga</p>
-					<p className='font-medium '>{rupiah(harga)}</p>
+					<p className='font-medium '>{rupiah(product.price)}</p>
 				</div>
 			</div>
 		</>
 	);
 };
 
-export default card;
+export default Detail;

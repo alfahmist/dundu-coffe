@@ -1,5 +1,5 @@
-import CardContent from './ProductContent';
-import CardImage from './ProductImage';
+import ProductHeader from './ProductHeader';
+import ProductBody from './ProductBody';
 
 const Product = ({ product }) => {
 	return (
@@ -7,8 +7,8 @@ const Product = ({ product }) => {
 			<div
 				className={`flex flex-col border-2 w-[45%] rounded-2xl overflow-hidden mb-4 sm:w-[31%]`}
 			>
-				<CardImage src={product.image} alt={product.name} />
-				<CardContent product={product} />
+				<ProductHeader src={product.image} alt={product.name} />
+				<ProductBody product={product} />
 			</div>
 		</>
 	);

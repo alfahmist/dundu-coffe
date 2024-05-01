@@ -1,6 +1,7 @@
 import useMarketStore from '../../store/marketStore';
 import ProductItem from './ProductItem';
 import { rupiah } from '../../utils/toRupiah';
+import { Link } from 'react-router-dom';
 
 const HistoryItem = ({ orderHistory, index }) => {
 	console.log(orderHistory);
@@ -46,14 +47,12 @@ const HistoryItem = ({ orderHistory, index }) => {
 						<p className='font-medium mb-[10px]'>
 							{rupiah(totalPriceAfterService)}
 						</p>
-						<button
-							onClick={() => {
-								sendToModal(orderHistory);
-							}}
+						<Link
+							to={`/order-history/${orderHistory.id}`}
 							className='font-medium text-red-500 mt-auto '
 						>
 							Lihat Detail Transaksi
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>

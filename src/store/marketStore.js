@@ -321,6 +321,7 @@ const useMarketStore = create((set, get) => ({
 			0
 		),
 	getCheckoutTotalItem: () => get().checkout.length,
+	getOrderHistoryById: (id) => get().orderHistory.find((el) => (el.id = id)),
 }));
 
 export default useMarketStore;

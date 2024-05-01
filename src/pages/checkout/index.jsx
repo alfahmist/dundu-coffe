@@ -6,12 +6,10 @@ const index = () => {
 	return (
 		<>
 			<Container>
-				<div>
-					<CheckoutHeader />
-					<hr className='my-[15px]' />
-					<CheckoutBody />
-					<hr className='my-[15px]' />
-				</div>
+				<CheckoutHeader />
+				<hr className='my-[15px]' />
+				<CheckoutBody />
+				<hr className='my-[15px]' />
 				<CheckoutFooter />
 			</Container>
 		</>

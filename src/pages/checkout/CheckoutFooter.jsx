@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import useMarketStore from '../../store/marketStore';
 import { rupiah } from '../../utils/toRupiah';
@@ -15,7 +16,13 @@ const CheckoutFooter = () => {
 	let totalPrice = getCheckoutPrice();
 	let servicePrice = (totalPrice * 6) / 100;
 	let totalPriceAfterService = totalPrice + servicePrice;
-
+	const [paymentSuccess, setPaymentSuccess] = useState(false);
+	useEffect(() => {
+		if (paymentSuccess) {
+			navigate('/');
+		}
+		console.log(paymentSuccess);
+	}, [paymentSuccess]);
 	return (
 		<button
 			onClick={() => {
@@ -27,14 +34,11 @@ const CheckoutFooter = () => {
 				sisa < 0 ? alert('kurang bayar') : null;
 				if (sisa === 0 || sisa > 0) {
 					setIsLoading(true);
-					setTimeout(() => {
-						alert('Pembayaran Berhasil');
-					}, 500);
-					console.log(checkout);
 					addToOrderHistory(bayar, sisa);
+					alert('Pembayaran Berhasil');
+					setIsLoading(false);
 					setTimeout(() => {
-						setIsLoading(false);
-						navigate('/');
+						setPaymentSuccess(true);
 					}, 1000);
 				}
 			}}

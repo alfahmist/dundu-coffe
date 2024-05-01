@@ -22,12 +22,8 @@ const index = () => {
 				return <Notification key={index} />;
 			})}
 
-			<div>
-				{['/', '/order-history', '/cart'].includes(path) ? (
-					<Navigation />
-				) : null}
-				<Outlet />
-			</div>
+			{!['/checkout'].includes(path) ? <Navigation /> : null}
+			<Outlet />
 		</>
 	);
 };

@@ -13,7 +13,7 @@ const index = () => {
 				</Link>
 				<div className='flex flex-col justify-end items-start'>
 					<Link to={'/cart'}>
-						<img src={cart} alt='cart' className='inline cursport ' />(
+						<img src={cart} alt='cart' className='inline cursor-pointer ' />(
 						{getTotalItem()})
 					</Link>
 					<Link to={'/order-history'}>Order History</Link>

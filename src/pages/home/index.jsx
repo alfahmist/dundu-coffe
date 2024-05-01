@@ -4,6 +4,7 @@ import Product from './Product';
 
 const index = () => {
 	const { products } = useMarketStore();
+	console.log('you are in home');
 	return (
 		<>
 			<Container>

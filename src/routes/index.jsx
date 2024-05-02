@@ -38,11 +38,8 @@ const index = () => {
 					element: <OrderHistory />,
 				},
 				{
-					path: 'order-history/:id',
+					path: 'order-history/:itemId',
 					element: <Detail />,
-					loader({ params, request }) {
-						return getOrderHistoryById(params.id);
-					},
 				},
 			],
 		},

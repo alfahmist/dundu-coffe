@@ -1,8 +1,6 @@
 import useMarketStore from '../../store/marketStore';
 import { rupiah } from '../../utils/toRupiah';
-const ProductItem = ({ product, otherProduct, orderHistory }) => {
-	const { sendToModal } = useMarketStore();
-
+const ProductItem = ({ product, otherProduct }) => {
 	return (
 		<>
 			<div className={`flex flex-row`}>
@@ -19,9 +17,9 @@ const ProductItem = ({ product, otherProduct, orderHistory }) => {
 					</div>
 					<button
 						className='text-sm font-light self-start'
-						onClick={() => {
-							sendToModal(orderHistory);
-						}}
+						// onClick={() => {
+						// 	sendToModal(orderHistory);
+						// }}
 					>
 						{otherProduct - 1 === 0
 							? ''

@@ -1,16 +1,19 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 import Container from '../../../components/Container';
 import Detail from './Detail';
 import { rupiah } from '../../../utils/toRupiah';
+import useMarketStore from '../../../store/marketStore';
 
 const index = () => {
-	const loaderData = useLoaderData();
-	console.log(loaderData);
-	let orderHistory = loaderData;
-
-	let totalPrice = orderHistory.totalPrice;
-	let servicePrice = (orderHistory.totalPrice * 6) / 100;
-	let totalPriceAfterService = orderHistory.totalPrice + servicePrice;
+	let { itemId } = useParams();
+	const { getOrderHistoryById } = useMarketStore();
+	// const loaderData = useLoaderData();
+	// console.log('loaderData');
+	// console.log(loaderData);
+	// console.log(itemId);
+	let orderHistory = getOrderHistoryById(Number(itemId));
+	console.log('DETAIL');
+	console.log(orderHistory);
 
 	let newDate = orderHistory.date.toLocaleDateString('default', {
 		weekday: 'long',
@@ -23,7 +26,7 @@ const index = () => {
 	let month = arrDate[1];
 	let year = arrDate[2];
 	let newTime = orderHistory.date.toLocaleTimeString('en-US');
-
+	console.log(orderHistory);
 	return (
 		<>
 			<Container>
@@ -46,20 +49,26 @@ const index = () => {
 							</p>
 							<div className='flex justify-between'>
 								<p className='font-light'>Total Harga Produk</p>
-								<p className='min-w-[120px]'>{rupiah(totalPrice)}</p>
+								<p className='min-w-[120px]'>
+									{rupiah(orderHistory.totalPrice)}
+								</p>
 							</div>
 							<div className='flex justify-between'>
 								<p className='font-light'>Subtotal</p>
-								<p className='min-w-[120px]'>{rupiah(totalPrice)}</p>
+								<p className='min-w-[120px]'>
+									{rupiah(orderHistory.totalPrice)}
+								</p>
 							</div>
 							<div className='flex justify-between '>
 								<p className='font-light self-start'>Service (6%)</p>
-								<p className='min-w-[120px]'>{rupiah(servicePrice)}</p>
+								<p className='min-w-[120px]'>
+									{rupiah(orderHistory.servicePrice)}
+								</p>
 							</div>
 							<div className='flex justify-between'>
 								<p className='font-medium'>Total Harga</p>
 								<p className='font-medium min-w-[120px]'>
-									{rupiah(totalPriceAfterService)}
+									{rupiah(orderHistory.totalPriceAfterService)}
 								</p>
 							</div>
 							<div className={'flex justify-between mt-[20px]'}>

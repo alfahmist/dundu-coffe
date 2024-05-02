@@ -59,43 +59,43 @@ const useMarketStore = create((set, get) => ({
 		// },
 	],
 	orderHistory: [
-		{
-			id: 222,
-			order: [
-				{
-					id: 22,
-					quantity: 2,
-					stock: 5,
-					name: 'name 2',
-					image: 'affogato.jpg',
-					price: 42000,
-					isSelected: true,
-				},
-				{
-					id: 22,
-					quantity: 2,
-					stock: 5,
-					name: 'name 2',
-					image: 'affogato.jpg',
-					price: 42000,
-					isSelected: true,
-				},
-				{
-					id: 22,
-					quantity: 2,
-					stock: 5,
-					name: 'name 2',
-					image: 'affogato.jpg',
-					price: 42000,
-					isSelected: true,
-				},
-			],
-			date: new Date(),
-			totalPrice: 100,
-			totalItem: 4,
-			tunai: 200,
-			kembalian: 100,
-		},
+		// {
+		// 	id: 222,
+		// 	order: [
+		// 		{
+		// 			id: 22,
+		// 			quantity: 2,
+		// 			stock: 5,
+		// 			name: 'name 2',
+		// 			image: 'affogato.jpg',
+		// 			price: 42000,
+		// 			isSelected: true,
+		// 		},
+		// 		{
+		// 			id: 22,
+		// 			quantity: 2,
+		// 			stock: 5,
+		// 			name: 'name 2',
+		// 			image: 'affogato.jpg',
+		// 			price: 42000,
+		// 			isSelected: true,
+		// 		},
+		// 		{
+		// 			id: 22,
+		// 			quantity: 2,
+		// 			stock: 5,
+		// 			name: 'name 2',
+		// 			image: 'affogato.jpg',
+		// 			price: 42000,
+		// 			isSelected: true,
+		// 		},
+		// 	],
+		// 	date: new Date(),
+		// 	totalPrice: 100,
+		// 	totalItem: 4,
+		// 	tunai: 200,
+		// 	kembalian: 100,
+		// },
 	],
 	pendingPayment: [],
 	notification: false,
@@ -157,19 +157,29 @@ const useMarketStore = create((set, get) => ({
 		set({ modal: [] });
 	},
 	// payment
-	addToOrderHistory: (bayar, kembalian) => {
+	addToOrderHistory: (
+		bayar,
+		kembalian,
+		totalPrice,
+		servicePrice,
+		totalPriceAfterService,
+		id
+	) => {
 		set((state) => ({
 			orderHistory: [
-				...get().orderHistory,
-				(state.orderHistory = {
-					id: isNaN(state.id) ? 1 : state.id + 1,
+				...state.orderHistory,
+				{
+					id: id,
 					order: get().checkout,
 					date: new Date(),
-					totalPrice: get().getCheckoutPrice(),
+					totalPrice: totalPrice,
 					totalItem: get().getCheckoutTotalItem(),
+					servicePrice: servicePrice,
+					totalPriceAfterService,
+					totalPriceAfterService,
 					tunai: bayar,
 					kembalian: kembalian,
-				}),
+				},
 			],
 		}));
 		get().products.map((y) => {
@@ -185,7 +195,7 @@ const useMarketStore = create((set, get) => ({
 				carts: get().getUnSelectedItem(),
 			});
 			console.log(get().checkout);
-		}, 1500);
+		}, 1000);
 
 		console.log(get().orderHistory);
 		console.log(get().checkout);
@@ -321,7 +331,7 @@ const useMarketStore = create((set, get) => ({
 			0
 		),
 	getCheckoutTotalItem: () => get().checkout.length,
-	getOrderHistoryById: (id) => get().orderHistory.find((el) => (el.id = id)),
+	getOrderHistoryById: (id) => get().orderHistory.find((el) => el.id == id),
 }));
 
 export default useMarketStore;

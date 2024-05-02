@@ -6,11 +6,11 @@ import { rupiah } from '../../utils/toRupiah';
 
 const CheckoutFooter = () => {
 	const {
-		checkout,
 		getCheckoutPrice,
 		setIsLoading,
 		isLoading,
 		addToOrderHistory,
+		orderHistory,
 	} = useMarketStore();
 	const navigate = useNavigate();
 	let totalPrice = getCheckoutPrice();
@@ -26,17 +26,28 @@ const CheckoutFooter = () => {
 	return (
 		<button
 			onClick={() => {
-				// menampilkan popup bayar
-				// order();
+				setPaymentSuccess(false);
 				let bayar = prompt('Input Bayar');
 				let sisa = bayar - totalPriceAfterService;
 				sisa > 0 ? alert('kembalian : ' + rupiah(sisa)) : null;
 				sisa < 0 ? alert('kurang bayar') : null;
 				if (sisa === 0 || sisa > 0) {
+					setPaymentSuccess(false);
 					setIsLoading(true);
-					addToOrderHistory(bayar, sisa);
-					alert('Pembayaran Berhasil');
-					setIsLoading(false);
+					let id = orderHistory.length + 1;
+					setTimeout(() => {
+						addToOrderHistory(
+							Number(bayar),
+							Number(sisa),
+							totalPrice,
+							servicePrice,
+							totalPriceAfterService,
+							id
+						);
+						setIsLoading(false);
+						alert('Pembayaran Berhasil');
+					}, 700);
+
 					setTimeout(() => {
 						setPaymentSuccess(true);
 					}, 1000);

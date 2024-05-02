@@ -20,7 +20,9 @@ const Detail = ({ product }) => {
 				</div>
 				<div className='flex flex-col sm:gap-2 w-full sm:w-[150px] justify-center items-center'>
 					<p className='font-normal'>Total Harga</p>
-					<p className='font-medium '>{rupiah(product.price)}</p>
+					<p className='font-medium '>
+						{rupiah(product.price * product.quantity)}
+					</p>
 				</div>
 			</div>
 		</>

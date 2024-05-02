@@ -4,6 +4,8 @@ import Container from '../../components/Container';
 
 const index = () => {
 	const { orderHistory } = useMarketStore();
+	console.log('orderHistory');
+	console.log(orderHistory);
 
 	return (
 		<>

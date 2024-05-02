@@ -4,12 +4,8 @@ import { rupiah } from '../../utils/toRupiah';
 import { Link } from 'react-router-dom';
 
 const HistoryItem = ({ orderHistory, index }) => {
+	console.log('orderHistory HistoryItem.jsx');
 	console.log(orderHistory);
-	const { sendToModal } = useMarketStore();
-
-	let totalPrice = orderHistory.totalPrice;
-	let servicePrice = (totalPrice * 6) / 100;
-	let totalPriceAfterService = totalPrice + servicePrice;
 
 	let newDate = orderHistory.date.toLocaleDateString('id', {
 		year: 'numeric',
@@ -43,12 +39,14 @@ const HistoryItem = ({ orderHistory, index }) => {
 					<div
 						className={'flex flex-col mr-[20px] justify-center items-center'}
 					>
+						{/* <p>{orderHistory.id}</p> */}
+						<p>{index}</p>
 						<p>Total Belanja</p>
 						<p className='font-medium mb-[10px]'>
-							{rupiah(totalPriceAfterService)}
+							{rupiah(orderHistory.totalPriceAfterService)}
 						</p>
 						<Link
-							to={`/order-history/${orderHistory.id}`}
+							to={`/order-history/${index}`}
 							className='font-medium text-red-500 mt-auto '
 						>
 							Lihat Detail Transaksi
